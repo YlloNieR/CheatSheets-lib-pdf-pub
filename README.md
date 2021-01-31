@@ -39,6 +39,11 @@
 - Insert
 - Strings
  
+### Windows commands
+- Network commands
+- Path of commands
+- Search
+- Useful commands
  
  
 # LDAP Installation and Config
