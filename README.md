@@ -1,4 +1,38 @@
 # CheatSheets_lib
+## Java
+- Class
+- Conditional statements
+- Enum
+- Exceptions
+- Exceptions
+- For Loops
+- Gerneral information
+- Heredity
+- Imports / Java-packages
+- Lists
+- Methods
+- Numbers
+- Operators
+- Override
+- Strings
+- UML / Class diagrams
+- While Loops
+
+## Linux Commands
+
+
+## SQL 
+- Change attributes
+- Check changes
+- Codd's rules
+- create
+- Data types
+- Delete / Drop
+- General information
+- Insert
+- Strings
+ 
+ 
  
 # LDAP Installation and Config
 ### 1. Step - Login to root and change the Hostname
