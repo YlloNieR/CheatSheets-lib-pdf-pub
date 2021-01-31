@@ -3,32 +3,32 @@
 # LDAP Installation and Config
 ### 1. Step - Login to root and change the Hostname
 
-```urname@kali$sudo -i```
+```urname@kali$ sudo -i```
 
-```root@kali$gedit /etc/hostname``` or ```$nano /etc/hostname```
+```root@kali$ gedit /etc/hostname``` or ```root@kali$$ nano /etc/hostname```
 
 write e.g. **server.ldap.com** CTRL+O,ENTER,CTRL+X
 
-```root@kali$reboot```
+```root@kali$ reboot```
 
 check change
 
-```urname@server$sudo -i```
+```urname@server$ sudo -i```
 
-```root@server$hostname```
+```root@server$ hostname```
 
 output: 
 ```server.ldap.com```
 
 ### 2. Step - Install OpenLDAP
-```root@server$apt-get install slapd ldap-utils -y``` or ```$yum install *openldap* -y```
+```root@server$ apt-get install slapd ldap-utils -y``` or ```root@server$ yum install *openldap* -y```
 
 give the Admin password for your server
 and confirm
 
 ### 3. Step - Configure OpenLDAP
 
-```root@server$nano /etc/ldap/ldap.conf```
+```root@server$ nano /etc/ldap/ldap.conf```
 
 ```
 #  
@@ -51,7 +51,7 @@ TLS_CACERT /etc/ssl/certs/ca-certificates.crt
 
 ### 4. Step - Reconfigure the slapd with the updated values
 
-```root@server$dpkg-reconfigure slapd```
+```root@server$ dpkg-reconfigure slapd```
 
 Omit OpenLDAP server configuration:```No```
 
@@ -73,7 +73,7 @@ Move old database?```Yes```
 
 ### 5. Step - Check your Config
 
-```root@server$ldapsearch -x``` or ```root@server$dpkg-reconfigure slapd```
+```root@server$ ldapsearch -x``` or ```root@server$dpkg-reconfigure slapd```
 
 output:
 
@@ -100,7 +100,7 @@ result: 0 success
 
 ## Troubleshooting
 
-```root@server$ldapsearch -x```
+```root@server$ ldapsearch -x```
 
 output:
 
@@ -108,29 +108,29 @@ output:
 
 change ldap.conf
 
-```root@server$nano /etc/ldap/ldap.conf```
+```root@server$ nano /etc/ldap/ldap.conf```
 
 restart the service
 
-```root@server$ps aux |grep slapd```
+```root@server$ ps aux |grep slapd```
 
-```root@server$/etc/init.d/slapd restart```
+```root@server$ /etc/init.d/slapd restart```
 
-```root@server$ps aux |grep slapd```
+```root@server$ ps aux |grep slapd```
 
 ### 6. Step - install phpldapadmin
 
-```root@server$apt-get install phpldapadmin -y```
+```root@server$ apt-get install phpldapadmin -y```
 
 ### 7. Step - look at your ipv4 address
 
-```urname@server$ifconfig```
+```urname@server$ ifconfig```
 
 look at inet addr for e.g.: 192.168.0.100
 
 ### 8. Step - Configure config.php
 
-```root@server$nano /etc/phpldapadmin/config.php```
+```root@server$ nano /etc/phpldapadmin/config.php```
 
 change those rows:
 
@@ -148,7 +148,7 @@ host = your ip address
 
 ### 9. Step - restart service
 
-```root@server$systemctl restart apache2```
+```root@server$ systemctl restart apache2```
 
 ### 10. Step - open website
 
@@ -171,14 +171,14 @@ because the public key is not available: NO_PUBKEY 40946E2F437D05B5
 
 on kali
 
-```gpg --keyserver pgpkeys.mit.edu --recv-key  40946E2F437D05B5```
+```$ sudo gpg --keyserver pgpkeys.mit.edu --recv-key  40946E2F437D05B5```
 
 OR try this server:
 
-```gpg --keyserver pool.sks-keyservers.net --recv-keys 40946E2F437D05B5```
+```$ sudo gpg --keyserver pool.sks-keyservers.net --recv-keys 40946E2F437D05B5```
 
-```gpg -a --export 40946E2F437D05B5 | sudo apt-key add -```
+```$ sudo gpg -a --export 40946E2F437D05B5 | sudo apt-key add -```
 
 on ubuntu
 
-```sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-keys 40946E2F437D05B5```
+```$ sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-keys 40946E2F437D05B5```
