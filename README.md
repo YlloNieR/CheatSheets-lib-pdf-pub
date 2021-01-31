@@ -1,5 +1,5 @@
 # CheatSheets_lib
-## Java
+### Java
 - Class
 - Conditional statements
 - Enum
@@ -18,10 +18,17 @@
 - UML / Class diagrams
 - While Loops
 
-## Linux Commands
+### Linux Commands
+- Gerneral commands
+- manipulate files
+- Navigation commands
+- Network commands
+- Path details
+- Permission / privileges
+- Shortcuts
+- System commands
 
-
-## SQL 
+### SQL 
 - Change attributes
 - Check changes
 - Codd's rules
