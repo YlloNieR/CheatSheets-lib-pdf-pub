@@ -171,4 +171,14 @@ because the public key is not available: NO_PUBKEY 40946E2F437D05B5
 
 on kali
 
-```gpg --keyserver pgpkeys.mit.edu --recv-key  ED444FF07D8D0BF6```
+```gpg --keyserver pgpkeys.mit.edu --recv-key  40946E2F437D05B5```
+
+OR try this server:
+
+```gpg --keyserver pool.sks-keyservers.net --recv-keys 40946E2F437D05B5```
+
+```gpg -a --export 40946E2F437D05B5 | sudo apt-key add -```
+
+on ubuntu
+
+```sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-keys 40946E2F437D05B5```
