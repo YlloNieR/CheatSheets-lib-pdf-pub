@@ -3,32 +3,34 @@
 # LDAP Installation and Config
 ### 1. Step - Login to root and change the Hostname
 
-```urname@kali$ sudo -i```
+&nbsp;&nbsp;&nbsp;&nbsp;```urname@kali$ sudo -i```
 
-```root@kali$ gedit /etc/hostname``` or ```root@kali$$ nano /etc/hostname```
+&nbsp;&nbsp;&nbsp;&nbsp;```root@kali$ gedit /etc/hostname``` or ```root@kali$$ nano /etc/hostname```
 
 write e.g. **server.ldap.com** CTRL+O,ENTER,CTRL+X
 
-```root@kali$ reboot```
+&nbsp;&nbsp;&nbsp;&nbsp;```root@kali$ reboot```
 
 check change
 
-```urname@server$ sudo -i```
+&nbsp;&nbsp;&nbsp;&nbsp;```urname@server$ sudo -i```
 
-```root@server$ hostname```
+&nbsp;&nbsp;&nbsp;&nbsp;```root@server$ hostname```
 
 output: 
-```server.ldap.com```
+
+&nbsp;&nbsp;&nbsp;&nbsp;```server.ldap.com```
 
 ### 2. Step - Install OpenLDAP
-```root@server$ apt-get install slapd ldap-utils -y``` or ```root@server$ yum install *openldap* -y```
+
+&nbsp;&nbsp;&nbsp;&nbsp;```root@server$ apt-get install slapd ldap-utils -y``` or ```root@server$ yum install *openldap* -y```
 
 give the Admin password for your server
 and confirm
 
 ### 3. Step - Configure OpenLDAP
 
-```root@server$ nano /etc/ldap/ldap.conf```
+&nbsp;&nbsp;&nbsp;&nbsp;```root@server$ nano /etc/ldap/ldap.conf```
 
 ```
 #  
@@ -51,29 +53,29 @@ TLS_CACERT /etc/ssl/certs/ca-certificates.crt
 
 ### 4. Step - Reconfigure the slapd with the updated values
 
-```root@server$ dpkg-reconfigure slapd```
+&nbsp;&nbsp;&nbsp;&nbsp;```root@server$ dpkg-reconfigure slapd```
 
-Omit OpenLDAP server configuration:```No```
+&nbsp;&nbsp;&nbsp;&nbsp;Omit OpenLDAP server configuration:```No```
 
-DNS domain name:```ldap.com```
+&nbsp;&nbsp;&nbsp;&nbsp;DNS domain name:```ldap.com```
 
-Organization name:```ldap company``` 
+&nbsp;&nbsp;&nbsp;&nbsp;Organization name:```ldap company``` 
 
-admin pw: :```password```
+&nbsp;&nbsp;&nbsp;&nbsp;admin pw: :```password```
 
-confirm pw:```password```
+&nbsp;&nbsp;&nbsp;&nbsp;confirm pw:```password```
 
-(Database backend to use:```MDB```)
+&nbsp;&nbsp;&nbsp;&nbsp;(Database backend to use:```MDB```)
 
-Do you want the database to be removed when slapd is purged?```No```
+&nbsp;&nbsp;&nbsp;&nbsp;Do you want the database to be removed when slapd is purged?```No```
 
-Move old database?```Yes```
+&nbsp;&nbsp;&nbsp;&nbsp;Move old database?```Yes```
 
-(Allow LDAPv2 protocol?```No```)
+&nbsp;&nbsp;&nbsp;&nbsp;(Allow LDAPv2 protocol?```No```)
 
 ### 5. Step - Check your Config
 
-```root@server$ ldapsearch -x``` or ```root@server$dpkg-reconfigure slapd```
+&nbsp;&nbsp;&nbsp;&nbsp;```root@server$ ldapsearch -x``` or ```root@server$dpkg-reconfigure slapd```
 
 output:
 
@@ -100,59 +102,59 @@ result: 0 success
 
 ## Troubleshooting
 
-```root@server$ ldapsearch -x```
+&nbsp;&nbsp;&nbsp;&nbsp;```root@server$ ldapsearch -x```
 
 output:
 
-```ldap_sasl_bind(SIMPLE): Can't contact LDAP server (-1)```
+&nbsp;&nbsp;&nbsp;&nbsp;```ldap_sasl_bind(SIMPLE): Can't contact LDAP server (-1)```
 
 change ldap.conf
 
-```root@server$ nano /etc/ldap/ldap.conf```
+&nbsp;&nbsp;&nbsp;&nbsp;```root@server$ nano /etc/ldap/ldap.conf```
 
 restart the service
 
-```root@server$ ps aux |grep slapd```
+&nbsp;&nbsp;&nbsp;&nbsp;```root@server$ ps aux |grep slapd```
 
-```root@server$ /etc/init.d/slapd restart```
+&nbsp;&nbsp;&nbsp;&nbsp;```root@server$ /etc/init.d/slapd restart```
 
-```root@server$ ps aux |grep slapd```
+&nbsp;&nbsp;&nbsp;&nbsp;```root@server$ ps aux |grep slapd```
 
 ### 6. Step - install phpldapadmin
 
-```root@server$ apt-get install phpldapadmin -y```
+&nbsp;&nbsp;&nbsp;&nbsp;```root@server$ apt-get install phpldapadmin -y```
 
 ### 7. Step - look at your ipv4 address
 
-```urname@server$ ifconfig```
+&nbsp;&nbsp;&nbsp;&nbsp;```urname@server$ ifconfig```
 
 look at inet addr for e.g.: 192.168.0.100
 
 ### 8. Step - Configure config.php
 
-```root@server$ nano /etc/phpldapadmin/config.php```
+&nbsp;&nbsp;&nbsp;&nbsp;```root@server$ nano /etc/phpldapadmin/config.php```
 
 change those rows:
 
-```$server->setvalue('server','name','Name of ur server');```
+&nbsp;&nbsp;&nbsp;&nbsp;```$server->setvalue('server','name','Name of ur server');```
 
 host = your ip address
 
-```$server->setvalue('server','host','192.168.0.100');``` 
+&nbsp;&nbsp;&nbsp;&nbsp;```$server->setvalue('server','host','192.168.0.100');``` 
 
-```$server->setvalue('server','base',array('dc=ldap,dc=com'));``` 
+&nbsp;&nbsp;&nbsp;&nbsp;```$server->setvalue('server','base',array('dc=ldap,dc=com'));``` 
 
-```$server->setvalue('login','bind_id','cn=admin,dc=ldap,dc=com');``` 
+&nbsp;&nbsp;&nbsp;&nbsp;```$server->setvalue('login','bind_id','cn=admin,dc=ldap,dc=com');``` 
 
-```// $config->custom->appearance['hide_template_warning'] - true;``` 
+&nbsp;&nbsp;&nbsp;&nbsp;```// $config->custom->appearance['hide_template_warning'] - true;``` 
 
 ### 9. Step - restart service
 
-```root@server$ systemctl restart apache2```
+&nbsp;&nbsp;&nbsp;&nbsp;```root@server$ systemctl restart apache2```
 
 ### 10. Step - open website
 
-```http://192.168.0.100/phpldapadmin/```
+&nbsp;&nbsp;&nbsp;&nbsp;```http://192.168.0.100/phpldapadmin/```
 
 # How to import keys from a keyserver using gpg in debian? / Public key error / Fix apt-get update “the following signatures couldn’t be verified because the public key is not available”
 
@@ -171,14 +173,14 @@ because the public key is not available: NO_PUBKEY 40946E2F437D05B5
 
 on kali
 
-```$ sudo gpg --keyserver pgpkeys.mit.edu --recv-key  40946E2F437D05B5```
+&nbsp;&nbsp;&nbsp;&nbsp;```$ sudo gpg --keyserver pgpkeys.mit.edu --recv-key  40946E2F437D05B5```
 
 OR try this server:
 
-```$ sudo gpg --keyserver pool.sks-keyservers.net --recv-keys 40946E2F437D05B5```
+&nbsp;&nbsp;&nbsp;&nbsp;```$ sudo gpg --keyserver pool.sks-keyservers.net --recv-keys 40946E2F437D05B5```
 
-```$ sudo gpg -a --export 40946E2F437D05B5 | sudo apt-key add -```
+&nbsp;&nbsp;&nbsp;&nbsp;```$ sudo gpg -a --export 40946E2F437D05B5 | sudo apt-key add -```
 
 on ubuntu
 
-```$ sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-keys 40946E2F437D05B5```
+&nbsp;&nbsp;&nbsp;&nbsp;```$ sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-keys 40946E2F437D05B5```
