@@ -1,7 +1,6 @@
 # CheatSheets_lib
  
 # LDAP Installation and Config
-
 ### 1. Step - Login to root and change the Hostname
 
 ```urname@kali$sudo -i```
@@ -74,7 +73,7 @@ Move old database?```Yes```
 
 ### 5. Step - Check your Config
 
-```root@server$ldapsearch -x```
+```root@server$ldapsearch -x``` or ```root@server$dpkg-reconfigure slapd```
 
 output:
 
@@ -154,3 +153,22 @@ host = your ip address
 ### 10. Step - open website
 
 ```http://192.168.0.100/phpldapadmin/```
+
+# How to import keys from a keyserver using gpg in debian? / Public key error / Fix apt-get update “the following signatures couldn’t be verified because the public key is not available”
+
+problem:
+
+```
+[username@kali ~]$ sudo apt-get update
+Ign http://security.ubuntu.com trusty-security InRelease
+Get:1 http://security.ubuntu.com trusty-security Release.gpg [933 B]
+...
+Fetched 21.9 MB in 14s (1,537 kB/s)
+Reading package lists... Done
+W: GPG error: http://security.ubuntu.com trusty-security Release: The following signatures couldn't be verified 
+because the public key is not available: NO_PUBKEY 40946E2F437D05B5
+```
+
+on kali
+
+```gpg --keyserver pgpkeys.mit.edu --recv-key  ED444FF07D8D0BF6```
