@@ -239,7 +239,7 @@ contains: /etc/perl /usr/local/lib/x86_64-linux-gnu/perl/5.24.1
 ```
 &nbsp;&nbsp;&nbsp;&nbsp;``root@server$ nano migrate_passwd.pl``
 
-&nbsp;&nbsp;&nbsp;&nbsp;```#41    require './migrate_common.ph';```
+&nbsp;&nbsp;&nbsp;&nbsp;```#41  require './migrate_common.ph';```
 
 and
 
@@ -249,7 +249,7 @@ try again
 
 &nbsp;&nbsp;&nbsp;&nbsp;```root@server$ /usr/share/migrationtools/migrate_passwd.pl /etc/ldap/passwd.root /etc/ldap/root.ldif```
 
-----
+---
 
 ### 14. Step - Update root.ldif file for the ldap Server
 
@@ -263,14 +263,13 @@ try again
  #3 cn: Manager
  #4 objectClass: account
 ```
-output:
 
-&nbsp;&nbsp;&nbsp;&nbsp;```ldap_sasl_bind(SIMPLE): Can't contact LDAP server (-1)```
+---
 
-# How to import keys from a keyserver using gpg in debian? / Public key error / Fix apt-get update “the following signatures couldn’t be verified because the public key is not available”
-
-### 15. Step - Create a domain ldif file (/etc/openldap/adminmart.com.ldif)
+### 15. Step - Create a domain ldif file (/etc/ldap/ldap.com.ldif)
 &nbsp;&nbsp;&nbsp;&nbsp;```root@server$ cat /etc/ldap/ldap.com.ldif```
+
+
 ```
 dn: dc=ldap,dc=com
 dc: ldap
@@ -283,7 +282,17 @@ ou: People
 description: Users of ldap Server
 objectClass: organizationalUnit
 ```
+### 16. Step - Import all users in to the LDAP
+&nbsp;&nbsp;&nbsp;&nbsp;```root@server$ ldapadd -x -D "cn=Manager,dc=ldap,dc=com" -W -f  /etc/ldap/ldap.com.ldif```
 
+
+
+---
+output:
+
+&nbsp;&nbsp;&nbsp;&nbsp;```ldap_sasl_bind(SIMPLE): Can't contact LDAP server (-1)```
+
+# How to import keys from a keyserver using gpg in debian? / Public key error / Fix apt-get update “the following signatures couldn’t be verified because the public key is not available”
 
 problem:
 
