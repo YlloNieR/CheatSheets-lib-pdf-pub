@@ -149,6 +149,8 @@ result: 0 success
 # numEntries: 1
 ```
 
+---
+
 ## Troubleshooting
 
 &nbsp;&nbsp;&nbsp;&nbsp;```root@server$ ldapsearch -x```
@@ -168,6 +170,8 @@ restart the service
 &nbsp;&nbsp;&nbsp;&nbsp;```root@server$ /etc/init.d/slapd restart```
 
 &nbsp;&nbsp;&nbsp;&nbsp;```root@server$ ps aux |grep slapd```
+
+---
 
 ### 6. Step - install phpldapadmin
 
@@ -269,7 +273,6 @@ try again
 ### 15. Step - Create a domain ldif file (/etc/ldap/ldap.com.ldif)
 &nbsp;&nbsp;&nbsp;&nbsp;```root@server$ cat /etc/ldap/ldap.com.ldif```
 
-
 ```
 dn: dc=ldap,dc=com
 dc: ldap
@@ -282,15 +285,13 @@ ou: People
 description: Users of ldap Server
 objectClass: organizationalUnit
 ```
+---
+
 ### 16. Step - Import all users in to the LDAP
 &nbsp;&nbsp;&nbsp;&nbsp;```root@server$ ldapadd -x -D "cn=Manager,dc=ldap,dc=com" -W -f  /etc/ldap/ldap.com.ldif```
 
-
-
 ---
-output:
 
-&nbsp;&nbsp;&nbsp;&nbsp;```ldap_sasl_bind(SIMPLE): Can't contact LDAP server (-1)```
 
 # How to import keys from a keyserver using gpg in debian? / Public key error / Fix apt-get update “the following signatures couldn’t be verified because the public key is not available”
 
