@@ -206,16 +206,16 @@ host = your ip address
 &nbsp;&nbsp;&nbsp;&nbsp;```http://192.168.0.100/phpldapadmin/```
 
 ### 11. Step - add User
-```root@server$ useradd testuser1```
+&nbsp;&nbsp;&nbsp;&nbsp;```root@server$ useradd testuser1```
 
-```root@server$ passwd testuser1```
+&nbsp;&nbsp;&nbsp;&nbsp;```root@server$ passwd testuser1```
 
-```root@server$ useradd testuser2```
+&nbsp;&nbsp;&nbsp;&nbsp;```root@server$ useradd testuser2```
 
-```root@server$ passwd testuser2```
+&nbsp;&nbsp;&nbsp;&nbsp;```root@server$ passwd testuser2```
 
 ### 12. Step - Migrate local users to LDAP
-```root@server$ nano /usr/share/openldap/migration/migrate_common.ph```
+&nbsp;&nbsp;&nbsp;&nbsp;```root@server$ nano /usr/share/openldap/migration/migrate_common.ph```
 
 ```
 #71 $DEFAULT_MAIL_DOMAIN = "ldap.com";
@@ -223,7 +223,8 @@ host = your ip address
 #74 $DEFAULT_BASE = "dc=ldap,dc=com";
 ```
 ### 13. Step - convert passwd.file to ldif (LDAP Data Interchange Format) file 
-```root@server$ /usr/share/openldap/migration/migrate_passwd.pl /etc/ldap/passwd.root /etc/ldap/root.ldif```
+
+&nbsp;&nbsp;&nbsp;&nbsp;```root@server$ /usr/share/openldap/migration/migrate_passwd.pl /etc/ldap/passwd.root /etc/ldap/root.ldif```
 
 ## Troubleshooting
 
@@ -248,12 +249,41 @@ try again
 
 &nbsp;&nbsp;&nbsp;&nbsp;```root@server$ /usr/share/migrationtools/migrate_passwd.pl /etc/ldap/passwd.root /etc/ldap/root.ldif```
 
+----
+
+### 14. Step - Update root.ldif file for the ldap Server
+
+&nbsp;&nbsp;&nbsp;&nbsp;
+
+&nbsp;&nbsp;&nbsp;&nbsp;```root@server$ nano /etc/ldap/root.ldif```
+
+```
+ #1 dn: uid=root,ou=People,dc=adminmart,dc=com
+ #2 uid: root
+ #3 cn: Manager
+ #4 objectClass: account
+```
 output:
 
 &nbsp;&nbsp;&nbsp;&nbsp;```ldap_sasl_bind(SIMPLE): Can't contact LDAP server (-1)```
 
-
 # How to import keys from a keyserver using gpg in debian? / Public key error / Fix apt-get update “the following signatures couldn’t be verified because the public key is not available”
+
+### 15. Step - Create a domain ldif file (/etc/openldap/adminmart.com.ldif)
+&nbsp;&nbsp;&nbsp;&nbsp;```root@server$ cat /etc/ldap/ldap.com.ldif```
+```
+dn: dc=ldap,dc=com
+dc: ldap
+description: LDAP Admin
+objectClass: dcObject
+objectClass: organizationalUnit
+ou: rootobject 
+dn: ou=People, dc=ldap,dc=com
+ou: People
+description: Users of ldap Server
+objectClass: organizationalUnit
+```
+
 
 problem:
 
