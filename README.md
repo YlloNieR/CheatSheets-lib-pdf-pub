@@ -47,6 +47,8 @@
  
  
 # LDAP Installation and Config
+
+
 ### 1. Step - Login to root and change the Hostname
 
 &nbsp;&nbsp;&nbsp;&nbsp;```urname@kali$ sudo -i```
@@ -67,9 +69,10 @@ output:
 
 &nbsp;&nbsp;&nbsp;&nbsp;```server.ldap.com```
 
-### 2. Step - Install OpenLDAP
+### 2. Step - Install OpenLDAP & Migrationtool
 
 &nbsp;&nbsp;&nbsp;&nbsp;```root@server$ apt-get install slapd ldap-utils -y``` or ```root@server$ yum install *openldap* -y```
+&nbsp;&nbsp;&nbsp;&nbsp;```root@server$ apt-get install migrationtools```
 
 give the Admin password for your server
 and confirm
@@ -201,6 +204,54 @@ host = your ip address
 ### 10. Step - open website
 
 &nbsp;&nbsp;&nbsp;&nbsp;```http://192.168.0.100/phpldapadmin/```
+
+### 11. Step - add User
+```root@server$ useradd testuser1```
+
+```root@server$ passwd testuser1```
+
+```root@server$ useradd testuser2```
+
+```root@server$ passwd testuser2```
+
+### 12. Step - Migrate local users to LDAP
+```root@server$ nano /usr/share/openldap/migration/migrate_common.ph```
+
+```
+#71 $DEFAULT_MAIL_DOMAIN = "ldap.com";
+...
+#74 $DEFAULT_BASE = "dc=ldap,dc=com";
+```
+### 13. Step - convert passwd.file to ldif (LDAP Data Interchange Format) file 
+```root@server$ /usr/share/openldap/migration/migrate_passwd.pl /etc/ldap/passwd.root /etc/ldap/root.ldif```
+
+## Troubleshooting
+
+```
+root@server:/usr/share/migrationtools# ./migrate_base.pl 
+Can't locate migrate_common.ph in @INC (did you run h2ph?) (@INC
+contains: /etc/perl /usr/local/lib/x86_64-linux-gnu/perl/5.24.1
+/usr/local/share/perl/5.24.1 /usr/lib/x86_64-linux-gnu/perl5/5.24
+/usr/share/perl5 /usr/lib/x86_64-linux-gnu/perl/5.24
+/usr/share/perl/5.24 /usr/local/lib/site_perl
+/usr/lib/x86_64-linux-gnu/perl-base) at ./migrate_base.pl line 39.
+```
+&nbsp;&nbsp;&nbsp;&nbsp;``root@server$ nano migrate_passwd.pl``
+
+&nbsp;&nbsp;&nbsp;&nbsp;```#41    require './migrate_common.ph';```
+
+and
+
+&nbsp;&nbsp;&nbsp;&nbsp;```root@server$ ln -s /etc/migrationtools/migrate_common.ph /etc/perl/```
+
+try again
+
+&nbsp;&nbsp;&nbsp;&nbsp;```root@server$ /usr/share/migrationtools/migrate_passwd.pl /etc/ldap/passwd.root /etc/ldap/root.ldif```
+
+output:
+
+&nbsp;&nbsp;&nbsp;&nbsp;```ldap_sasl_bind(SIMPLE): Can't contact LDAP server (-1)```
+
 
 # How to import keys from a keyserver using gpg in debian? / Public key error / Fix apt-get update “the following signatures couldn’t be verified because the public key is not available”
 
