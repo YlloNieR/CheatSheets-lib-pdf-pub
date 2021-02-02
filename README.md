@@ -51,7 +51,7 @@
 
 &nbsp;&nbsp;&nbsp;&nbsp;```urname@kali$ sudo -i```
 
-&nbsp;&nbsp;&nbsp;&nbsp;```root@kali$ gedit /etc/hostname``` or ```root@kali$$ nano /etc/hostname```
+&nbsp;&nbsp;&nbsp;&nbsp;```root@kali$ gedit /etc/hostname``` or ```root@kali$$ nano /etc/hostname``` or ```root@kali$$ vi /etc/hostname```
 
 write e.g. **server.ldap.com** CTRL+O,ENTER,CTRL+X
 
@@ -76,7 +76,7 @@ and confirm
 
 ### 3. Step - Configure OpenLDAP
 
-&nbsp;&nbsp;&nbsp;&nbsp;```root@server$ nano /etc/ldap/ldap.conf```
+&nbsp;&nbsp;&nbsp;&nbsp;```root@server$ nano /etc/ldap/ldap.conf``` or ```root@kali$$ vi /etc/ldap/ldap.conf```
 
 ```
 #  
@@ -156,7 +156,7 @@ output:
 
 change ldap.conf
 
-&nbsp;&nbsp;&nbsp;&nbsp;```root@server$ nano /etc/ldap/ldap.conf```
+&nbsp;&nbsp;&nbsp;&nbsp;```root@server$ nano /etc/ldap/ldap.conf``` or ```root@kali$$ vi /etc/ldap/ldap.conf```
 
 restart the service
 
@@ -178,7 +178,7 @@ look at inet addr for e.g.: 192.168.0.100
 
 ### 8. Step - Configure config.php
 
-&nbsp;&nbsp;&nbsp;&nbsp;```root@server$ nano /etc/phpldapadmin/config.php```
+&nbsp;&nbsp;&nbsp;&nbsp;```root@server$ nano /etc/phpldapadmin/config.php``` or ```root@kali$$ vi /etc/phpldapadmin/config.php```
 
 change those rows:
 
