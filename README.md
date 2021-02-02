@@ -287,6 +287,9 @@ objectClass: organizationalUnit
 ```
 ---
 
+
+```root@server$ /etc/init.d/slapd restart```
+
 ### 16. Step - Import all users in to the LDAP
 &nbsp;&nbsp;&nbsp;&nbsp;```root@server$ ldapadd -x -D "cn=Manager,dc=ldap,dc=com" -W -f  /etc/ldap/ldap.com.ldif```
 
