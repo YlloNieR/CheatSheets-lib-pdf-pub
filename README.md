@@ -72,6 +72,7 @@ output:
 ### 2. Step - Install OpenLDAP & Migrationtool
 
 &nbsp;&nbsp;&nbsp;&nbsp;```root@server$ apt-get install slapd ldap-utils -y``` or ```root@server$ yum install *openldap* -y```
+
 &nbsp;&nbsp;&nbsp;&nbsp;```root@server$ apt-get install migrationtools```
 
 give the Admin password for your server
