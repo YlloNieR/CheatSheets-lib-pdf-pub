@@ -55,7 +55,7 @@
 
 &nbsp;&nbsp;&nbsp;&nbsp;```root@kali$ gedit /etc/hostname``` or ```root@kali$ nano /etc/hostname``` or ```root@kali$ vi /etc/hostname```
 
-write e.g. **server.ldap.com** CTRL+O,ENTER,CTRL+X
+write e.g. **server.lingoworld.de** CTRL+O,ENTER,CTRL+X
 
 &nbsp;&nbsp;&nbsp;&nbsp;```root@kali$ reboot```
 
@@ -67,79 +67,55 @@ check change
 
 output: 
 
-&nbsp;&nbsp;&nbsp;&nbsp;```server.ldap.com```
+&nbsp;&nbsp;&nbsp;&nbsp;```server.lingoworld.de```
 
-### 2. Step - Install OpenLDAP & Migrationtool
+### 2. Step - install OpenLDAP
 
-&nbsp;&nbsp;&nbsp;&nbsp;```root@server$ apt-get install slapd ldap-utils -y``` or ```root@server$ yum install *openldap* -y```
+&nbsp;&nbsp;&nbsp;&nbsp;```root@server$ apt-get install slapd ldap-utils -y```
 
-&nbsp;&nbsp;&nbsp;&nbsp;```root@server$ apt-get install migrationtools```
+check if the server is already started
 
-give the Admin password for your server
-and confirm
+&nbsp;&nbsp;&nbsp;&nbsp;```root@server$ ps aux |grep slapd```
 
-### 3. Step - Configure OpenLDAP
+if not start it
 
-&nbsp;&nbsp;&nbsp;&nbsp;```root@server$ nano /etc/ldap/ldap.conf``` or ```root@server$ vi /etc/ldap/ldap.conf```
+&nbsp;&nbsp;&nbsp;&nbsp;```root@server$ /etc/init.d/slapd restart```
 
-```
-#  
-# LDAP Defaults
-# 
-
-# See ldap.conf(5) for details
-# This file should be world readable but not writable.
-
-BASE dc=ldap,dc=com
-URI ldap://localhost:389
-
-# SIZELIMIT 12
-# TIMELIMIT 15
-# DEREF never
-
-# TLS certificates
-TLS_CACERT /etc/ssl/certs/ca-certificates.crt
-``` 
-
-### 4. Step - Reconfigure the slapd with the updated values
+### 3. Step - Reconfigure the slapd with the updated values
 
 &nbsp;&nbsp;&nbsp;&nbsp;```root@server$ dpkg-reconfigure slapd```
 
 &nbsp;&nbsp;&nbsp;&nbsp;Omit OpenLDAP server configuration:```No```
 
-&nbsp;&nbsp;&nbsp;&nbsp;DNS domain name:```ldap.com```
+&nbsp;&nbsp;&nbsp;&nbsp;DNS domain name:```lingoworld```
 
-&nbsp;&nbsp;&nbsp;&nbsp;Organization name:```ldap company``` 
+&nbsp;&nbsp;&nbsp;&nbsp;Organization name:```de``` 
 
-&nbsp;&nbsp;&nbsp;&nbsp;admin pw: :```password```
+&nbsp;&nbsp;&nbsp;&nbsp;admin pw: :```secret```
 
-&nbsp;&nbsp;&nbsp;&nbsp;confirm pw:```password```
-
-&nbsp;&nbsp;&nbsp;&nbsp;(Database backend to use:```MDB```)
+&nbsp;&nbsp;&nbsp;&nbsp;confirm pw:```secret```
 
 &nbsp;&nbsp;&nbsp;&nbsp;Do you want the database to be removed when slapd is purged?```No```
 
 &nbsp;&nbsp;&nbsp;&nbsp;Move old database?```Yes```
 
-&nbsp;&nbsp;&nbsp;&nbsp;(Allow LDAPv2 protocol?```No```)
-
-### 5. Step - Check your Config
+### 4. Step - Check your Config
 
 &nbsp;&nbsp;&nbsp;&nbsp;```root@server$ ldapsearch -x``` or ```root@server$dpkg-reconfigure slapd```
 
 output:
 
-```
+```bash
 # extended LDIF
 #
 # LDAPv3
-# base <dc=ldap,dc=com> (default) with scope subtree
+# base <dc=llingoworld,dc=de> (default) with scope subtree
 # filter: (objectclass=*)
 # requesting: All
 # 
 
-# ldap.com
-dn: dc=ldap,dc=com
+# lingoworld.de
+dn: dc=llingoworld,dc=de
 objectClass: top
 objectClass: dcObject
 objectClass: organization
@@ -160,14 +136,6 @@ output:
 
 &nbsp;&nbsp;&nbsp;&nbsp;```ldap_sasl_bind(SIMPLE): Can't contact LDAP server (-1)```
 
-### Option 1
-
-change ldap.conf
-
-&nbsp;&nbsp;&nbsp;&nbsp;```root@server$ nano /etc/ldap/ldap.conf``` or ```root@server$ vi /etc/ldap/ldap.conf```
-
-### Option 2
-
 restart the service
 
 &nbsp;&nbsp;&nbsp;&nbsp;```root@server$ ps aux |grep slapd```
@@ -177,6 +145,114 @@ restart the service
 &nbsp;&nbsp;&nbsp;&nbsp;```root@server$ ps aux |grep slapd```
 
 ---
+
+&nbsp;&nbsp;&nbsp;&nbsp;```root@server$ ldapadd -Y EXTERNAL -H ldapi:/// -f /etc/ldap/schema/cosine.ldif```
+
+&nbsp;&nbsp;&nbsp;&nbsp;```root@server$ ldapadd -Y EXTERNAL -H ldapi:/// -f /etc/ldap/schema/nis.ldif```
+
+&nbsp;&nbsp;&nbsp;&nbsp;```root@server$ ldapadd -Y EXTERNAL -H ldapi:/// -f /etc/ldap/schema/inetorgperson.ldif```
+
+### 4. Step - insert data
+
+&nbsp;&nbsp;&nbsp;&nbsp;```root@server$ nano backend.ligoworld.com```
+
+```bash
+# Load dynamic backend modules
+dn: cn=module,cn=config
+objectClass: olcModuleList
+cn: module
+olcModulepath: /usr/lib/ldap
+olcModuleload: back_hdb
+
+# Database settings
+dn: olcDatabase=hdb,cn=config
+objectClass: olcDatabaseConfig
+objectClass: olcHdbConfig
+olcDatabase: {1}hdb
+olcSuffix: dc=lingoworld,dc=de
+olcDbDirectory: /var/lib/ldap
+olcRootDN: cn=admin,dc=lingoworld,dc=de
+olcRootPW: secret
+olcDbConfig: set_cachesize 0 2097152 0
+olcDbConfig: set_lk_max_objects 1500
+olcDbConfig: set_lk_max_locks 1500
+olcDbConfig: set_lk_max_lockers 1500
+olcDbIndex: objectClass eq
+olcLastMod: TRUE
+olcDbCheckpoint: 512 30
+olcAccess: to attrs=userPassword by dn="cn=admin,dc=lingoworld,dc=de" write by anonymous auth by self write by * none
+olcAccess: to attrs=shadowLastChange by self write by * read
+olcAccess: to dn.base="" by * read
+olcAccess: to * by dn="cn=admin,dc=lingoworld,dc=de" write by * read
+```
+
+&nbsp;&nbsp;&nbsp;&nbsp;```root@server$ ldapadd -Y EXTERNAL -H ldapi:/// -f frontend.lingoworld.de.ldif```
+
+---
+
+## Troubleshooting
+
+```bash
+SASL/EXTERNAL authentication started
+SASL username: gidNumber=0+uidNumber=0,cn=peercred,cn=external,cn=auth
+SASL SSF: 0
+adding new entry "dc=lingoworld,dc=de"
+ldap_add: Insufficient access (50)
+        additional info: no write access to parent
+```
+
+&nbsp;&nbsp;&nbsp;&nbsp;```root@server$ ldapadd -x -D cn=admin,dc=lingoworld,dc=de -w secret -H ldapi:/// -f frontend.lingoworld.de.ldif```
+
+---
+
+&nbsp;&nbsp;&nbsp;&nbsp;```root@server$ ldapsearch -x```
+
+---
+
+check inserted data
+
+&nbsp;&nbsp;&nbsp;&nbsp;```root@server$ ldapsearch -xLLL -b dc=lingoworld,dc=de uid=john sn givenName cn```
+
+```bash
+dn: uid=john,ou=Developer,dc=lingoworld,dc=de
+sn: Doe
+givenName: John
+cn: John Doe
+```
+
+check configuration
+
+&nbsp;&nbsp;&nbsp;&nbsp;```root@server$ ldapsearch -LLL -Y EXTERNAL -H ldapi:/// -b cn=config dn```
+
+```bash
+SASL/EXTERNAL authentication started
+SASL username: gidNumber=0+uidNumber=0,cn=peercred,cn=external,cn=auth
+SASL SSF: 0
+dn: cn=config
+
+dn: cn=module{0},cn=config
+
+dn: cn=module{1},cn=config
+
+dn: cn=schema,cn=config
+
+dn: cn={0}core,cn=schema,cn=config
+
+dn: cn={1}cosine,cn=schema,cn=config
+
+dn: cn={2}nis,cn=schema,cn=config
+
+dn: cn={3}inetorgperson,cn=schema,cn=config
+
+dn: olcDatabase={-1}frontend,cn=config
+
+dn: olcDatabase={0}config,cn=config
+
+dn: olcDatabase={1}mdb,cn=config
+
+dn: olcDatabase={2}hdb,cn=config
+```
+
 
 ### 6. Step - install phpldapadmin
 
@@ -200,9 +276,9 @@ host = your ip address
 
 &nbsp;&nbsp;&nbsp;&nbsp;```$server->setvalue('server','host','192.168.0.100');``` 
 
-&nbsp;&nbsp;&nbsp;&nbsp;```$server->setvalue('server','base',array('dc=ldap,dc=com'));``` 
+&nbsp;&nbsp;&nbsp;&nbsp;```$server->setvalue('server','base',array('dc=llingoworld,dc=de'));``` 
 
-&nbsp;&nbsp;&nbsp;&nbsp;```$server->setvalue('login','bind_id','cn=admin,dc=ldap,dc=com');``` 
+&nbsp;&nbsp;&nbsp;&nbsp;```$server->setvalue('login','bind_id','cn=admin,dc=llingoworld,dc=de');``` 
 
 &nbsp;&nbsp;&nbsp;&nbsp;```// $config->custom->appearance['hide_template_warning'] - true;``` 
 
@@ -226,10 +302,10 @@ host = your ip address
 ### 12. Step - Migrate local users to LDAP
 &nbsp;&nbsp;&nbsp;&nbsp;```root@server$ nano /usr/share/openldap/migration/migrate_common.ph```
 
-```
-#71 $DEFAULT_MAIL_DOMAIN = "ldap.com";
+```bash
+#71 $DEFAULT_MAIL_DOMAIN = "lingoworld.de";
 ...
-#74 $DEFAULT_BASE = "dc=ldap,dc=com";
+#74 $DEFAULT_BASE = "dc=llingoworld,dc=de";
 ```
 ### 13. Step - convert passwd.file to ldif (LDAP Data Interchange Format) file 
 
@@ -267,7 +343,7 @@ try again
 &nbsp;&nbsp;&nbsp;&nbsp;```root@server$ nano /etc/ldap/root.ldif```
 
 ```
- #1 dn: uid=root,ou=People,dc=adminmart,dc=com
+ #1 dn: uid=root,ou=People,dc=adminmart,dc=de
  #2 uid: root
  #3 cn: Manager
  #4 objectClass: account
@@ -275,17 +351,17 @@ try again
 
 ---
 
-### 15. Step - Create a domain ldif file (/etc/ldap/ldap.com.ldif)
-&nbsp;&nbsp;&nbsp;&nbsp;```root@server$ cat /etc/ldap/ldap.com.ldif```
+### 15. Step - Create a domain ldif file (/etc/ldap/lingoworld.de.ldif)
+&nbsp;&nbsp;&nbsp;&nbsp;```root@server$ cat /etc/ldap/lingoworld.de.ldif```
 
 ```
-dn: dc=ldap,dc=com
+dn: dc=llingoworld,dc=de
 dc: ldap
 description: LDAP Admin
 objectClass: dcObject
 objectClass: organizationalUnit
 ou: rootobject 
-dn: ou=People, dc=ldap,dc=com
+dn: ou=People, dc=llingoworld,dc=de
 ou: People
 description: Users of ldap Server
 objectClass: organizationalUnit
@@ -296,7 +372,7 @@ objectClass: organizationalUnit
 ```root@server$ /etc/init.d/slapd restart```
 
 ### 16. Step - Import all users in to the LDAP
-&nbsp;&nbsp;&nbsp;&nbsp;```root@server$ ldapadd -x -D "cn=Manager,dc=ldap,dc=com" -W -f  /etc/ldap/ldap.com.ldif```
+&nbsp;&nbsp;&nbsp;&nbsp;```root@server$ ldapadd -x -D "cn=Manager,dc=llingoworld,dc=de" -W -f  /etc/ldap/lingoworld.de.ldif```
 
 ---
 
