@@ -71,7 +71,7 @@ output:
 
 ### 2. Step - install OpenLDAP
 
-&nbsp;&nbsp;&nbsp;&nbsp;```root@server$ apt-get install slapd ldap-utils -y```
+&nbsp;&nbsp;&nbsp;&nbsp;```root@server$ apt-get install slapd -y```
 
 check if the server is already started
 
@@ -146,13 +146,13 @@ restart the service
 
 ---
 
+### 5. Step - insert data
+
 &nbsp;&nbsp;&nbsp;&nbsp;```root@server$ ldapadd -Y EXTERNAL -H ldapi:/// -f /etc/ldap/schema/cosine.ldif```
 
 &nbsp;&nbsp;&nbsp;&nbsp;```root@server$ ldapadd -Y EXTERNAL -H ldapi:/// -f /etc/ldap/schema/nis.ldif```
 
 &nbsp;&nbsp;&nbsp;&nbsp;```root@server$ ldapadd -Y EXTERNAL -H ldapi:/// -f /etc/ldap/schema/inetorgperson.ldif```
-
-### 4. Step - insert data
 
 &nbsp;&nbsp;&nbsp;&nbsp;```root@server$ nano backend.ligoworld.com```
 
@@ -258,13 +258,13 @@ dn: olcDatabase={2}hdb,cn=config
 
 &nbsp;&nbsp;&nbsp;&nbsp;```root@server$ apt-get install phpldapadmin -y```
 
-### 7. Step - look at your ipv4 address
+### 6. Step - look at your ipv4 address
 
 &nbsp;&nbsp;&nbsp;&nbsp;```urname@server$ ifconfig```
 
 look at inet addr for e.g.: 192.168.0.100
 
-### 8. Step - Configure config.php
+### 7. Step - Configure config.php
 
 &nbsp;&nbsp;&nbsp;&nbsp;```root@server$ nano /etc/phpldapadmin/config.php``` or ```root@server$ vi /etc/phpldapadmin/config.php```
 
@@ -282,15 +282,15 @@ host = your ip address
 
 &nbsp;&nbsp;&nbsp;&nbsp;```// $config->custom->appearance['hide_template_warning'] - true;``` 
 
-### 9. Step - restart service
+### 8. Step - restart service
 
 &nbsp;&nbsp;&nbsp;&nbsp;```root@server$ systemctl restart apache2```
 
-### 10. Step - open website
+### 9. Step - open website
 
 &nbsp;&nbsp;&nbsp;&nbsp;```http://192.168.0.100/phpldapadmin/```
 
-### 11. Step - add User
+### 12. Step - add User
 &nbsp;&nbsp;&nbsp;&nbsp;```root@server$ useradd testuser1```
 
 &nbsp;&nbsp;&nbsp;&nbsp;```root@server$ passwd testuser1```
@@ -299,7 +299,7 @@ host = your ip address
 
 &nbsp;&nbsp;&nbsp;&nbsp;```root@server$ passwd testuser2```
 
-### 12. Step - Migrate local users to LDAP
+### 13. Step - Migrate local users to LDAP
 &nbsp;&nbsp;&nbsp;&nbsp;```root@server$ nano /usr/share/openldap/migration/migrate_common.ph```
 
 ```bash
@@ -307,7 +307,7 @@ host = your ip address
 ...
 #74 $DEFAULT_BASE = "dc=llingoworld,dc=de";
 ```
-### 13. Step - convert passwd.file to ldif (LDAP Data Interchange Format) file 
+### 14. Step - convert passwd.file to ldif (LDAP Data Interchange Format) file 
 
 &nbsp;&nbsp;&nbsp;&nbsp;```root@server$ /usr/share/openldap/migration/migrate_passwd.pl /etc/ldap/passwd.root /etc/ldap/root.ldif```
 
