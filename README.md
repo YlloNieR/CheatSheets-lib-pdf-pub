@@ -187,6 +187,69 @@ olcAccess: to * by dn="cn=admin,dc=lingoworld,dc=de" write by * read
 ```
 
 &nbsp;&nbsp;&nbsp;&nbsp;```root@server$ ldapadd -Y EXTERNAL -H ldapi:/// -f frontend.lingoworld.de.ldif```
+```bash
+# Create top-level object in domain
+dn: dc=lingoworld,dc=de
+objectClass: top
+objectClass: dcObject
+objectclass: organization
+o: lingoworld
+dc: lingoworld
+description: lingoworld Example
+
+# Admin user.
+dn: cn=admin,dc=lingoworld,dc=de
+objectClass: simpleSecurityObject
+objectClass: organizationalRole
+cn: admin
+description: LDAP administrator
+userPassword: secret
+
+dn: ou=Developer,dc=lingoworld,dc=de
+objectClass: organizationalUnit
+ou: Developer
+
+dn: ou=groups,dc=lingoworld,dc=de
+objectClass: organizationalUnit
+ou: groups
+
+dn: uid=john,ou=developer,dc=lingoworld,dc=de
+objectClass: inetOrgPerson
+objectClass: posixAccount
+objectClass: shadowAccount
+uid: john
+sn: Doe
+givenName: John
+cn: John Doe
+displayName: John Doe
+uidNumber: 1000
+gidNumber: 10000
+userPassword: secret
+gecos: John Doe
+loginShell: /bin/bash
+homeDirectory: /home/john
+shadowExpire: -1
+shadowFlag: 0
+shadowWarning: 7
+shadowMin: 8
+shadowMax: 999999
+shadowLastChange: 10877
+mail: john.doe@lingoworld.de
+postalCode: 31000
+l: Toulouse
+o: Example
+mobile: +33 (0)6 xx xx xx xx
+homePhone: +33 (0)5 xx xx xx xx
+title: System Administrator
+postalAddress: 
+initials: JD
+
+#example group member
+dn: cn=example,ou=groups,dc=lingoworld,dc=de
+objectClass: posixGroup
+cn: example
+gidNumber: 10000
+```
 
 ---
 
@@ -287,13 +350,14 @@ change those rows:
 host = your ip address
 
 ```php
-$server->setvalue('server','host','192.168.0.100');
+// $config->custom->appearance['hide_template_warning'] - true;         #161
 ...
-$server->setvalue('server','base',array('dc=lingoworld,dc=de'));
+$server->setvalue('server','host','192.168.0.100');                     #293
 ...
-$server->setvalue('login','bind_id','cn=admin,dc=lingoworld,dc=de');
+$server->setvalue('server','base',array('dc=lingoworld,dc=de'));        #300
 ...
-// $config->custom->appearance['hide_template_warning'] - true;
+$server->setvalue('login','bind_id','cn=admin,dc=lingoworld,dc=de');    #326     
+
 ```
 
 ### 9. Step - restart service
