@@ -260,7 +260,7 @@ dn: olcDatabase={2}hdb,cn=config
 
 ### 6. Step - look at your ipv4 address
 
-&nbsp;&nbsp;&nbsp;&nbsp;```urname@server$ ifconfig```
+&nbsp;&nbsp;&nbsp;&nbsp;```root@server$ ifconfig```
 
 look at inet addr for e.g.: 192.168.0.100
 
