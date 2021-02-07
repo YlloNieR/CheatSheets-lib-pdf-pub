@@ -276,9 +276,9 @@ host = your ip address
 
 &nbsp;&nbsp;&nbsp;&nbsp;```$server->setvalue('server','host','192.168.0.100');``` 
 
-&nbsp;&nbsp;&nbsp;&nbsp;```$server->setvalue('server','base',array('dc=llingoworld,dc=de'));``` 
+&nbsp;&nbsp;&nbsp;&nbsp;```$server->setvalue('server','base',array('dc=lingoworld,dc=de'));``` 
 
-&nbsp;&nbsp;&nbsp;&nbsp;```$server->setvalue('login','bind_id','cn=admin,dc=llingoworld,dc=de');``` 
+&nbsp;&nbsp;&nbsp;&nbsp;```$server->setvalue('login','bind_id','cn=admin,dc=lingoworld,dc=de');``` 
 
 &nbsp;&nbsp;&nbsp;&nbsp;```// $config->custom->appearance['hide_template_warning'] - true;``` 
 
@@ -305,7 +305,7 @@ host = your ip address
 ```bash
 #71 $DEFAULT_MAIL_DOMAIN = "lingoworld.de";
 ...
-#74 $DEFAULT_BASE = "dc=llingoworld,dc=de";
+#74 $DEFAULT_BASE = "dc=lingoworld,dc=de";
 ```
 ### 14. Step - convert passwd.file to ldif (LDAP Data Interchange Format) file 
 
@@ -355,13 +355,13 @@ try again
 &nbsp;&nbsp;&nbsp;&nbsp;```root@server$ cat /etc/ldap/lingoworld.de.ldif```
 
 ```
-dn: dc=llingoworld,dc=de
+dn: dc=lingoworld,dc=de
 dc: ldap
 description: LDAP Admin
 objectClass: dcObject
 objectClass: organizationalUnit
 ou: rootobject 
-dn: ou=People, dc=llingoworld,dc=de
+dn: ou=People, dc=lingoworld,dc=de
 ou: People
 description: Users of ldap Server
 objectClass: organizationalUnit
@@ -372,7 +372,7 @@ objectClass: organizationalUnit
 ```root@server$ /etc/init.d/slapd restart```
 
 ### 16. Step - Import all users in to the LDAP
-&nbsp;&nbsp;&nbsp;&nbsp;```root@server$ ldapadd -x -D "cn=Manager,dc=llingoworld,dc=de" -W -f  /etc/ldap/lingoworld.de.ldif```
+&nbsp;&nbsp;&nbsp;&nbsp;```root@server$ ldapadd -x -D "cn=Manager,dc=lingoworld,dc=de" -W -f  /etc/ldap/lingoworld.de.ldif```
 
 ---
 
