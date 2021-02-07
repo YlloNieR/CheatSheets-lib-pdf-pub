@@ -109,13 +109,13 @@ output:
 # extended LDIF
 #
 # LDAPv3
-# base <dc=llingoworld,dc=de> (default) with scope subtree
+# base <dc=lingoworld,dc=de> (default) with scope subtree
 # filter: (objectclass=*)
 # requesting: All
 # 
 
 # lingoworld.de
-dn: dc=llingoworld,dc=de
+dn: dc=lingoworld,dc=de
 objectClass: top
 objectClass: dcObject
 objectClass: organization
@@ -154,7 +154,7 @@ restart the service
 
 &nbsp;&nbsp;&nbsp;&nbsp;```root@server$ ldapadd -Y EXTERNAL -H ldapi:/// -f /etc/ldap/schema/inetorgperson.ldif```
 
-&nbsp;&nbsp;&nbsp;&nbsp;```root@server$ nano backend.ligoworld.com```
+&nbsp;&nbsp;&nbsp;&nbsp;```root@server$ nano backend.lingoworld.com```
 
 ```bash
 # Load dynamic backend modules
