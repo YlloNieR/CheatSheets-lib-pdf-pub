@@ -258,13 +258,25 @@ dn: olcDatabase={2}hdb,cn=config
 
 &nbsp;&nbsp;&nbsp;&nbsp;```root@server$ apt-get install phpldapadmin -y```
 
-### 6. Step - look at your ipv4 address
+### 7. Step - Set server address
+
+### Option 1 you take your current IPv4 address
 
 &nbsp;&nbsp;&nbsp;&nbsp;```root@server$ ifconfig```
 
 look at inet addr for e.g.: 192.168.0.100
 
-### 7. Step - Configure config.php
+### Option 2 you set a new one
+
+&nbsp;&nbsp;&nbsp;&nbsp;```root@server$ nano /etc/hosts```
+
+add your ipv4 adress for e.g.: 
+```
+127.0.0.1 localhost
+127.0.1.1 server.lingoworld.de
+```
+
+### 8. Step - Configure config.php
 
 &nbsp;&nbsp;&nbsp;&nbsp;```root@server$ nano /etc/phpldapadmin/config.php``` or ```root@server$ vi /etc/phpldapadmin/config.php```
 
@@ -274,108 +286,23 @@ change those rows:
 
 host = your ip address
 
-&nbsp;&nbsp;&nbsp;&nbsp;```$server->setvalue('server','host','192.168.0.100');``` 
+```php
+$server->setvalue('server','host','192.168.0.100');
+...
+$server->setvalue('server','base',array('dc=lingoworld,dc=de'));
+...
+$server->setvalue('login','bind_id','cn=admin,dc=lingoworld,dc=de');
+...
+// $config->custom->appearance['hide_template_warning'] - true;
+```
 
-&nbsp;&nbsp;&nbsp;&nbsp;```$server->setvalue('server','base',array('dc=lingoworld,dc=de'));``` 
-
-&nbsp;&nbsp;&nbsp;&nbsp;```$server->setvalue('login','bind_id','cn=admin,dc=lingoworld,dc=de');``` 
-
-&nbsp;&nbsp;&nbsp;&nbsp;```// $config->custom->appearance['hide_template_warning'] - true;``` 
-
-### 8. Step - restart service
+### 9. Step - restart service
 
 &nbsp;&nbsp;&nbsp;&nbsp;```root@server$ systemctl restart apache2```
 
-### 9. Step - open website
+### 10. Step - open website
 
 &nbsp;&nbsp;&nbsp;&nbsp;```http://192.168.0.100/phpldapadmin/```
-
-### 12. Step - add User
-&nbsp;&nbsp;&nbsp;&nbsp;```root@server$ useradd testuser1```
-
-&nbsp;&nbsp;&nbsp;&nbsp;```root@server$ passwd testuser1```
-
-&nbsp;&nbsp;&nbsp;&nbsp;```root@server$ useradd testuser2```
-
-&nbsp;&nbsp;&nbsp;&nbsp;```root@server$ passwd testuser2```
-
-### 13. Step - Migrate local users to LDAP
-&nbsp;&nbsp;&nbsp;&nbsp;```root@server$ nano /usr/share/openldap/migration/migrate_common.ph```
-
-```bash
-#71 $DEFAULT_MAIL_DOMAIN = "lingoworld.de";
-...
-#74 $DEFAULT_BASE = "dc=lingoworld,dc=de";
-```
-### 14. Step - convert passwd.file to ldif (LDAP Data Interchange Format) file 
-
-&nbsp;&nbsp;&nbsp;&nbsp;```root@server$ /usr/share/openldap/migration/migrate_passwd.pl /etc/ldap/passwd.root /etc/ldap/root.ldif```
-
-## Troubleshooting
-
-```
-root@server:/usr/share/migrationtools# ./migrate_base.pl 
-Can't locate migrate_common.ph in @INC (did you run h2ph?) (@INC
-contains: /etc/perl /usr/local/lib/x86_64-linux-gnu/perl/5.24.1
-/usr/local/share/perl/5.24.1 /usr/lib/x86_64-linux-gnu/perl5/5.24
-/usr/share/perl5 /usr/lib/x86_64-linux-gnu/perl/5.24
-/usr/share/perl/5.24 /usr/local/lib/site_perl
-/usr/lib/x86_64-linux-gnu/perl-base) at ./migrate_base.pl line 39.
-```
-&nbsp;&nbsp;&nbsp;&nbsp;``root@server$ nano migrate_passwd.pl``
-
-&nbsp;&nbsp;&nbsp;&nbsp;```#41  require './migrate_common.ph';```
-
-and
-
-&nbsp;&nbsp;&nbsp;&nbsp;```root@server$ ln -s /etc/migrationtools/migrate_common.ph /etc/perl/```
-
-try again
-
-&nbsp;&nbsp;&nbsp;&nbsp;```root@server$ /usr/share/migrationtools/migrate_passwd.pl /etc/ldap/passwd.root /etc/ldap/root.ldif```
-
----
-
-### 14. Step - Update root.ldif file for the ldap Server
-
-&nbsp;&nbsp;&nbsp;&nbsp;
-
-&nbsp;&nbsp;&nbsp;&nbsp;```root@server$ nano /etc/ldap/root.ldif```
-
-```
- #1 dn: uid=root,ou=People,dc=adminmart,dc=de
- #2 uid: root
- #3 cn: Manager
- #4 objectClass: account
-```
-
----
-
-### 15. Step - Create a domain ldif file (/etc/ldap/lingoworld.de.ldif)
-&nbsp;&nbsp;&nbsp;&nbsp;```root@server$ cat /etc/ldap/lingoworld.de.ldif```
-
-```
-dn: dc=lingoworld,dc=de
-dc: ldap
-description: LDAP Admin
-objectClass: dcObject
-objectClass: organizationalUnit
-ou: rootobject 
-dn: ou=People, dc=lingoworld,dc=de
-ou: People
-description: Users of ldap Server
-objectClass: organizationalUnit
-```
----
-
-
-```root@server$ /etc/init.d/slapd restart```
-
-### 16. Step - Import all users in to the LDAP
-&nbsp;&nbsp;&nbsp;&nbsp;```root@server$ ldapadd -x -D "cn=Manager,dc=lingoworld,dc=de" -W -f  /etc/ldap/lingoworld.de.ldif```
-
----
-
 
 # How to import keys from a keyserver using gpg in debian? / Public key error / Fix apt-get update “the following signatures couldn’t be verified because the public key is not available”
 
