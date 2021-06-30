@@ -25,6 +25,7 @@ sudo systemctl disable nodered.service
 ```
 ---
 
+
 ## network config
 ### Default config
 ```bash
@@ -59,9 +60,13 @@ nano /etc/hosts
 192.168.0.10    ipThatYouWant
 ```
 on pi IP you get access from another client of same network
+---
+
 
 ## How to install addons e.g. Dashboard
 Burger Menu > Manage Palette > install > Search for "Dashboard"> Select "node-red-dashboard" > install
+---
+
 
 ## icons
 | Option          | Command             | size  |
@@ -71,32 +76,43 @@ Burger Menu > Manage Palette > install > Search for "Dashboard"> Select "node-re
 | Font Awesome    | fa-thermometer-full | fa-lg |
 | Font Awesome    | fa-address-book     | fa-2x |
 | Font Awesome    | fa-address-book     | fa-5x |
+---
+
 
 ## parser
 ```js
 parseInt(str)
 num.toString(2) // 2 chars after comma
-
 ```
+---
+
 
 ## edit text with html / js
 ```js
 <font style="color:Black;font-size:18px">Black &#9632;</font>
 ```
+---
+
 
 ## get json components
 ```json
 var compareValue = msg.payload["oem-number"];
 var compareValue = msg.payload.oemNumber;
 ```
+---
+
 
 ## get unix timestamp
 ```js
 getTimestamp = Math.round((new Date()).getTime() / 1000);
 ```
+---
+
 
 ## layout editor
 dashboard > choose tab > choose layout
+---
+
 
 ## js splitter & parser sample
 ```js
@@ -111,11 +127,15 @@ for (i=0; i<splitter.length-1; i++){
 
 return msg;
 ```
+---
+
 
 ## using material icons
 ```html
 <font i class="material-icons thumb_up" color = green></i></font>
 ```
+---
+
 
 ## store data
 ### context 
@@ -146,6 +166,8 @@ msg.payload=flowCount;
 flow.set('flowCount',flowCount);
 return msg;
 ```
+---
+
 
 ## clear form
 ```js
@@ -158,12 +180,18 @@ msg.payload.stadt = '';
 msg.topic = {};
 return msg;
 ```
+---
+
+
 ## delete certain element from array
 ```js
 var data = msg.payload
 var removed = data.splice(3,1); // only the third element will be deleted
 msg.payload = data
 ```
+---
+
+
 ## how to find out if array is empty
 ```js
 if(arr.length > 0){
@@ -174,6 +202,8 @@ if(arr.length > 0){
     return msg
 }
 ```
+---
+
 
 ## filter table
 ```js
@@ -200,6 +230,8 @@ if(arr.length > 0){
                 }
             },
 ```
+---
+
 
 ## date time
 ### sample 1
@@ -260,8 +292,9 @@ msg.payload.datetimestr = msg.payload.date+" "+msg.payload.time+" "+"Backup.txt"
 msg.payload=msg.payload.datetimestr
 return msg;
 ```
-
 ---
+
+
 ## form table data
 ```js
 tmp = msg;
@@ -276,6 +309,8 @@ for (var i=0 ; i < tmp.details.length; i++){
 
 return msg;
 ```
+---
+
 
 ### form json
 ```js
@@ -335,6 +370,8 @@ delete msg.payload
 
 return msg;
 ```
+---
+
 
 ## form msg with icons
 ```js
@@ -370,6 +407,8 @@ for (m=0; m<msg.log.length; m++){
 
 return msg;
 ```
+---
+
 
 ## multiple outputs
 ```js
@@ -400,6 +439,9 @@ msg1.payload = appearanceInUse;
 
 return [msg1,msg2];
 ```
+---
+
+
 ## push to array
 ```js
 const animals = ['pigs', 'goats', 'sheep'];
@@ -414,3 +456,4 @@ animals.push('chickens', 'cats', 'dogs');
 console.log(animals);
 // expected output: Array ["pigs", "goats", "sheep", "cows", "chickens", "cats", "dogs"]
 ```
+---
