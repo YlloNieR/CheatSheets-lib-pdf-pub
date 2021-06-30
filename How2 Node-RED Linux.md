@@ -23,6 +23,7 @@ sudo systemctl enable nodered.service
 ```bash
 sudo systemctl disable nodered.service
 ```
+---
 
 ## network config
 ### Default config
