@@ -64,6 +64,7 @@ on pi IP you get access from another client of same network
 
 
 ## How to install addons e.g. Dashboard
+``` ```
 Burger Menu > Manage Palette > install > Search for "Dashboard"> Select "node-red-dashboard" > install
 ---
 
