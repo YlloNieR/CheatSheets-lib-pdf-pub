@@ -110,6 +110,7 @@ getTimestamp = Math.round((new Date()).getTime() / 1000);
 
 
 ## layout editor
+
 dashboard > choose tab > choose layout
 ---
 
