@@ -70,4 +70,4 @@ a.SendKeys "{ENTER}"
 Loop
 ```
 
-![Screenshot - Chrome Bot.png](.\"Screenshot - Chrome Bot.png")
+![Screenshot - Chrome Bot.png](./"Screenshot - Chrome Bot.png")
