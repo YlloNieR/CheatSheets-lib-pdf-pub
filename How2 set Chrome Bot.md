@@ -72,7 +72,7 @@ a.SendKeys "{ENTER}"
 Loop
 ```
 
-![Screenshot - Chrome Bot.png](.\"Screenshot - Chrome Bot.png")
+![Screenshot - Chrome Bot.png](./Screenshot%20-%20Chrome%20Bot.png)
 
 ## procedure
 1. start chrome
