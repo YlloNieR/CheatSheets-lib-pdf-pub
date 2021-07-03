@@ -3,7 +3,8 @@
 - install Addon from Webstore **User-Agent Switcher**
 
 ## set User-Agent Switcher
-> options > Custom Mode > 
+- put in a huge amount of numbers and this will set the user-agent as number (randomly)
+> options > Custom Mode
 ```json
 {
   "www.sample.com": [
@@ -26,12 +27,13 @@
 start Chrome + F12
 
 ### set counter
+#### js1
 ```js
 localStorage.setItem('counter', 0);
 ```
-start once as follows
+#### js2
 ```js
-function asd(){
+function clickBot(){
 var counter = parseInt(localStorage.getItem('counter'));
 console.log("stage 1");
 document.querySelector("#image_competition-entry-290 > div > div.image_competition-items-item--image.rounded > img").click();
@@ -44,7 +46,7 @@ counter++;
 localStorage.setItem('counter', counter);
 setTimeout(function(){location.reload();},1000);
 }
-setTimeout(function(){asd();},100);
+setTimeout(function(){clickBot();},100);
 ```
 
 ## create VBSkript file for automation
@@ -71,3 +73,9 @@ Loop
 ```
 
 ![Screenshot - Chrome Bot.png](.\"Screenshot - Chrome Bot.png")
+
+## procedure
+1. start chrome
+2. F12 + console + set localStorage Variable counter(js1)
+3. start js2 once
+4. start vbs
