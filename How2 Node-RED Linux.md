@@ -460,3 +460,26 @@ console.log(animals);
 
 
 ---
+## exec node (linux shell) & echo string with quotation marks
+for e.g. you want to create xml file on raspi by node-red
+```xml
+<?xml version='1.0' encoding=...
+```
+msg.payload as follows is {"oem":"asd123","manu":"hp"}
+
+```js
+filenameBegin = "./Desktop/xmlLabels/";
+filenameMiddle = "";
+filenameEnd = ".label";
+ 
+json = msg.payload;
+filenameMiddle = json.oem+"-"+json.manu;
+
+filename = filenameBegin+filenameMiddle+filenameEnd;
+
+fileInput = '<?xml version='+"'"+'"'+"'"+"1.0"+"'"+'"'+"'"+' encoding=...'
+command = 'echo '+'"'+fileInput+ '"'+' > '
+
+msg.payload=command+filename;
+return msg;
+```
