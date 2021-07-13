@@ -118,6 +118,8 @@ Switch1# show startup-config
 | show ip route      | Displays the current active IP routing table |
 | show arp           | Displays the current active IP address-to-MAC address mapping in the ARP table |
 
+![Cisco modes](./img - cisco modes.png)
+
 # configure Firewall / Router
 wf.msc
 ```powershell
