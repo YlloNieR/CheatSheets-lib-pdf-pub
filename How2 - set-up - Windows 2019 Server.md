@@ -36,7 +36,7 @@ Switch1(config)# exit
 ```
 ## configure IP Default-Gateway
 ```cisco
-Switch1(config)# ip default-gateway 192.168.5.254
+Switch1(config)# ip default-gateway 192.168.5.1
 ```
 ## configure Local User & Password
 ```cisco
@@ -68,7 +68,7 @@ Switch1(config)# line vty 0 15
 Switch1(config)# exec-timeout 0 30
 Switch1(config)# exit
 ```
-## configure Pasword Encryption
+## configure Password Encryption
 ```cisco
 Switch1(config)# service password-encryption
 Switch1(config)# exit
@@ -77,11 +77,6 @@ Switch1(config)# exit
 ```cisco
 Switch1# show running-config
 ```
-## configure Copy Run Start
-```cisco
-Switch1# copy running-config startup-config
-Switch1# exit
-```
 ## configure VLAN on port
 VLAN1 default for router
 VLAN 30 for DC
@@ -89,7 +84,7 @@ VLAN 30 for DC
 Switch1# show vlan
 
 Switch1# conf t
-Switch1# int <port number>
+Switch1# int range <port number>-<port number>
 Switch1# switchport mode access
 Switch1# switchport access vlan <ID>
 Switch1# no shut
