@@ -97,6 +97,26 @@ Switch1# end
 
 Switch1# show vlan
 ```
+## To save this configuration to NVRAM
+```cisco
+Switch1# copy running-config startup-config
+Destination filename [startup-config]?y
+Building configuration...
+[OK]
+```
+### check config
+```cisco
+Switch1# show startup-config
+```
+| Cisco IOS Command  | Description   |
+| -----------------  | -------------:|
+| show interface     | Displays current status and configuration details for all interfaces in the system |
+| show processes cpu | Displays CPU utilization and the current processes running in the system |
+| show buffers       | Shows how system buffers are currently allocated and functioning for packet forwarding |
+| show memory        | Shows how memory is allocated to various system functions and memory utilization |
+| show diag          | Displays details on hardware cards in the system |
+| show ip route      | Displays the current active IP routing table |
+| show arp           | Displays the current active IP address-to-MAC address mapping in the ARP table |
 
 # configure Firewall / Router
 wf.msc
