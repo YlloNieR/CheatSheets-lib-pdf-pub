@@ -21,14 +21,48 @@
 User Name:cisco
 Password:******
 ```
-
+## erase old data
+```cisco
+Switch> enable
+Switch# configure terminal
+SWITCH# delete flash:vlan.dat
+SWITCH# erase startup-config
+SWITCH# reload
+```
 ## configure Hostname
 ```cisco
 Switch> enable
 Switch# configure terminal
 Switch(config)# hostname Switch1
 ```
-## configure Mgmt IP Address
+## configure Local User & Password
+```cisco
+Switch1(config)# username user1 password cisco
+```
+## configure login banner, save logins
+```cisco
+Switch1(config)# banner motd #TEXT#
+```
+encrypted password for privileged exec mode
+```cisco
+Switch1(config)# enable password cisco
+```
+or decrypted password for privileged exec mode
+```cisco
+Switch1(config)# enable secret cisco
+```
+password for console mode
+```cisco
+Switch1(config)# line console 0
+Switch1(config-line)# password
+Switch1(config-line)# login
+```
+## configure encrypt all passwords
+```cisco
+Switch1(config)# service password-encryption
+Switch1(config)# exit
+```
+## configure ip interface for vlan
 ```cisco
 Switch1(config)# interface vlan 1
 Switch1(config)# ip address 192.168.5.25 255.255.255.0
@@ -38,20 +72,16 @@ Switch1(config)# exit
 ```cisco
 Switch1(config)# ip default-gateway 192.168.5.1
 ```
-## configure Local User & Password
+## configure SSH Server
 ```cisco
-Switch1(config)# username user1 password cisco
-```
-## configure Enable Secret
-hashes password for login
-```cisco
-Switch1(config)# enable secret cisco
-```
-## configure Console & VTY (Virtual teletype) Logins to Router / Switch
-```cisco
-Switch1(config)# line console 0
-Switch1(config-line)# password cisco
-Switch1(config-line)# exit
+Switch1(config)# hostname <XXX>
+Switch1(config)# ip domain-name <beispiel.de>
+Switch1(config)# crypto key generate rsa
+Switch1(config)# username <NAME>
+Switch1(config)# line vty 0 15
+Switch1(config-line)# password <XXX>
+Switch1(config-line)# login
+Switch1(config-line)# transport input ssh
 ```
 Line vty 0 4 = 5 simultaneous virtual connections
 Line vty 0 15 = 16 simultaneous virtual connections Maximum allowed values
@@ -68,11 +98,7 @@ Switch1(config)# line vty 0 15
 Switch1(config)# exec-timeout 0 30
 Switch1(config)# exit
 ```
-## configure Password Encryption
-```cisco
-Switch1(config)# service password-encryption
-Switch1(config)# exit
-```
+
 ## check your configuration
 ```cisco
 Switch1# show running-config
@@ -84,7 +110,7 @@ VLAN 30 for DC
 Switch1# show vlan
 
 Switch1# conf t
-Switch1# int range <port number>-<port number>
+Switch1# int range <Fa0/1-24>
 Switch1# switchport mode access
 Switch1# switchport access vlan <ID>
 Switch1# no shut
@@ -96,8 +122,9 @@ Switch1# show vlan
 ```cisco
 Switch1# copy running-config startup-config
 Destination filename [startup-config]?y
-Building configuration...
-[OK]
+Building configuration... [OK]
+Switch1#write memory
+Building configuration... [OK]
 ```
 ### check config
 ```cisco
