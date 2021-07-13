@@ -24,11 +24,22 @@ Password:******
 ## erase old data
 ```cisco
 Switch> enable
-Switch# configure terminal
+Switch> configure terminal
 SWITCH# delete flash:vlan.dat
 SWITCH# erase startup-config
 SWITCH# reload
 ```
+or
+```cisco
+Switch> enable
+Switch> configure terminal
+SWITCH# write erase 
+SWITCH# reload
+```
+```cisco
+Switch> enable
+write erase
+
 ## configure Hostname
 ```cisco
 Switch> enable
@@ -43,15 +54,15 @@ Switch1(config)# username user1 password cisco
 ```cisco
 Switch1(config)# banner motd #TEXT#
 ```
-encrypted password for privileged exec mode
+#### encrypted password for privileged exec mode
 ```cisco
 Switch1(config)# enable password cisco
 ```
-or decrypted password for privileged exec mode
+#### or decrypted password for privileged exec mode
 ```cisco
 Switch1(config)# enable secret cisco
 ```
-password for console mode
+#### password for console mode | global config mode
 ```cisco
 Switch1(config)# line console 0
 Switch1(config-line)# password
