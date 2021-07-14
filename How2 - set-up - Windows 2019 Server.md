@@ -24,6 +24,13 @@ Password:******
 ## erase old data
 ```cisco
 Switch> enable
+SWITCH# write erase 
+SWITCH# reload
+```
+- prompt to “enter the initial configuration dialog?” again. 
+- type “n”
+```cisco
+SWITCH# show vlan
 SWITCH# delete flash:vlan.dat
 SWITCH# erase startup-config
 SWITCH# reload
@@ -31,7 +38,7 @@ SWITCH# reload
 or
 ```cisco
 Switch> enable
-SWITCH# write erase 
+
 SWITCH# reload
 ```
 ```cisco
