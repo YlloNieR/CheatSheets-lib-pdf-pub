@@ -35,12 +35,8 @@ SWITCH# delete flash:vlan.dat
 SWITCH# erase startup-config
 SWITCH# reload
 ```
-or
-```cisco
-Switch> enable
 
-SWITCH# reload
-```
+## configure hostname
 ```cisco
 Switch> enable
 Switch# configure terminal
