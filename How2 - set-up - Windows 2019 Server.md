@@ -24,7 +24,6 @@ Password:******
 ## erase old data
 ```cisco
 Switch> enable
-Switch> configure terminal
 SWITCH# delete flash:vlan.dat
 SWITCH# erase startup-config
 SWITCH# reload
@@ -32,15 +31,9 @@ SWITCH# reload
 or
 ```cisco
 Switch> enable
-Switch> configure terminal
 SWITCH# write erase 
 SWITCH# reload
 ```
-```cisco
-Switch> enable
-write erase
-
-## configure Hostname
 ```cisco
 Switch> enable
 Switch# configure terminal
