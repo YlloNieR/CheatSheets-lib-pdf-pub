@@ -78,12 +78,14 @@ Switch1(config)# ip default-gateway 192.168.5.1
 ```cisco
 Switch1(config)# vlan 100 
 Switch1(config-vlan)# name VLAN100
+Switch1(config-vlan)# exit
 ```
 ## rename vlan
 ```cisco
 Switch1(config)# exit
 Switch1# vlan database
 Switch1(vlan)# vlan 2 name vlan2 
+Switch1(vlan)# exit
 ```
 ## delete vlan
 ```cisco
@@ -118,8 +120,8 @@ Switch1(config-line)# exit
 configures inactive session timeout in min for the vty 0 port
 ```cisco
 Switch1(config)# line vty 0 15
-Switch1(config)# exec-timeout 0 30
-Switch1(config)# exit
+Switch1(config-line)# exec-timeout 0 30
+Switch1(config-line)# exit
 ```
 
 ## check your configuration
