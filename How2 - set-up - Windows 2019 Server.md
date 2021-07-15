@@ -92,8 +92,8 @@ Switch1(config)# no vlan 2
 ## configure ip interface for vlan
 ```cisco
 Switch1(config)# interface vlan 1
-Switch1(config)# ip address 192.168.5.2 255.255.255.0
-Switch1(config)# exit
+Switch1(config-if)# ip address 192.168.5.2 255.255.255.0
+Switch1(config-if)# exit
 ```
 ## configure SSH Server
 ```cisco
