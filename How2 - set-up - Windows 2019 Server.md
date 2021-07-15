@@ -72,7 +72,7 @@ Switch1(config)# exit
 ```
 ## configure IP Default-Gateway
 ```cisco
-Switch1(config)# ip default-gateway 192.168.5.1 255.255.255.0
+Switch1(config)# ip default-gateway 192.168.5.1
 ```
 ## set vlan
 ```cisco
