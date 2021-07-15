@@ -70,15 +70,15 @@ Switch1(config)# exit
 Switch1(config)# service password-encryption
 Switch1(config)# exit
 ```
+## configure IP Default-Gateway
+```cisco
+Switch1(config)# ip default-gateway 192.168.5.1 255.255.255.0
+```
 ## configure ip interface for vlan
 ```cisco
 Switch1(config)# interface vlan 1
-Switch1(config)# ip address 192.168.5.25 255.255.255.0
+Switch1(config)# ip address 192.168.5.2 255.255.255.0
 Switch1(config)# exit
-```
-## configure IP Default-Gateway
-```cisco
-Switch1(config)# ip default-gateway 192.168.5.1
 ```
 ## configure SSH Server
 ```cisco
