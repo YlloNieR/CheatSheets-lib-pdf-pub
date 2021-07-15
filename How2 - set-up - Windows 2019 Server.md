@@ -99,6 +99,11 @@ Switch1(config-if)# exit
 ```
 ## configure SSH Server
 ```cisco
+Switch1(config)#line console 0
+Switch1(config-line)#logging synchronous
+Switch1(config-line)#login local
+Switch1(config-line)#end
+
 Switch1(config)# hostname <XXX>
 Switch1(config)# ip domain-name <beispiel.de>
 Switch1(config)# crypto key generate rsa
