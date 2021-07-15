@@ -135,11 +135,11 @@ VLAN 30 for DC
 Switch1# show vlan
 
 Switch1# conf t
-Switch1# int range <Fa0/1-24>
-Switch1# switchport mode access
-Switch1# switchport access vlan <ID>
-Switch1# no shut
-Switch1# end
+Switch1(config)# int range <Fa0/1-24>
+Switch1(config)# switchport mode access
+Switch1(config)# switchport access vlan <ID>
+Switch1(config)# no shut
+Switch1(config)# end
 
 Switch1# show vlan
 ```
