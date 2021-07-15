@@ -146,7 +146,7 @@ Switch1# show vlan
 ## To save this configuration to NVRAM
 ```cisco
 Switch1# copy running-config startup-config
-Destination filename [startup-config]?y
+Destination filename [startup-config]?
 Building configuration... [OK]
 Switch1#write memory
 Building configuration... [OK]
