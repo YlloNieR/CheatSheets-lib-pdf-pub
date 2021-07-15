@@ -63,6 +63,7 @@ Switch1(config)# enable secret cisco
 Switch1(config)# line console 0
 Switch1(config-line)# password
 Switch1(config-line)# login
+Switch1(config)# exit
 ```
 ## configure encrypt all passwords
 ```cisco
