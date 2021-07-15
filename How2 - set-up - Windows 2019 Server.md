@@ -61,7 +61,7 @@ Switch1(config)# enable secret cisco
 #### password for console mode | global config mode
 ```cisco
 Switch1(config)# line console 0
-Switch1(config-line)# password
+Switch1(config-line)# password cisco
 Switch1(config-line)# login
 Switch1(config)# exit
 ```
