@@ -74,6 +74,21 @@ Switch1(config)# exit
 ```cisco
 Switch1(config)# ip default-gateway 192.168.5.1 255.255.255.0
 ```
+## set vlan
+```cisco
+Switch1(config)# vlan 100 
+Switch1(config-vlan)# name VLAN100
+```
+## rename vlan
+```cisco
+Switch1(config)# exit
+Switch1# vlan database
+Switch1(vlan)# vlan 2 name vlan2 
+```
+## delete vlan
+```cisco
+Switch1(config)# no vlan 2
+```
 ## configure ip interface for vlan
 ```cisco
 Switch1(config)# interface vlan 1
