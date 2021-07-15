@@ -97,38 +97,6 @@ Switch1(config)# interface vlan 1
 Switch1(config-if)# ip address 192.168.5.2 255.255.255.0
 Switch1(config-if)# exit
 ```
-## configure SSH Server
-```cisco
-Switch1(config)#line console 0
-Switch1(config-line)#logging synchronous
-Switch1(config-line)#login local
-Switch1(config-line)#end
-
-Switch1(config)# hostname <XXX>
-Switch1(config)# ip domain-name <beispiel.de>
-Switch1(config)# crypto key generate rsa
-Switch1(config)# username <NAME>
-Switch1(config)# line vty 0 15
-Switch1(config-line)# password <XXX>
-Switch1(config-line)# login
-Switch1(config-line)# transport input ssh
-```
-Line vty 0 4 = 5 simultaneous virtual connections
-Line vty 0 15 = 16 simultaneous virtual connections Maximum allowed values
-```cisco
-Switch1(config)# line vty 0 4
-Switch1(config-line)# password cisco
-Switch1(config-line)# login
-Switch1(config-line)# exit
-```
-## configure Exec-Timeout
-configures inactive session timeout in min for the vty 0 port
-```cisco
-Switch1(config)# line vty 0 15
-Switch1(config-line)# exec-timeout 0 30
-Switch1(config-line)# exit
-```
-
 ## check your configuration
 ```cisco
 Switch1# show running-config
@@ -153,12 +121,40 @@ Switch1# show vlan
 Switch1# copy running-config startup-config
 Destination filename [startup-config]?
 Building configuration... [OK]
-Switch1#write memory
+Switch1# write memory
 Building configuration... [OK]
 ```
-### check config
+## configure SSH Server
+```cisco
+Switch1(config)#line console 0
+Switch1(config-line)#logging synchronous
+Switch1(config-line)#login local
+Switch1(config-line)#end
+
+Switch1(config)# hostname <XXX>
+Switch1(config)# ip domain-name <beispiel.de>
+Switch1(config)# crypto key generate rsa
+Switch1(config)# username <NAME>
+Switch1(config)# line vty 0 15
+Switch1(config-line)# password <XXX>
+Switch1(config-line)# login
+Switch1(config-line)# transport input ssh
+```
+Line vty 0 4 = 5 simultaneous virtual connections
+Line vty 0 15 = 16 simultaneous virtual connections Maximum allowed values
+
+## configure Exec-Timeout
+configures inactive session timeout in min for the vty 0 port
+```cisco
+Switch1(config)# line vty 0 15
+Switch1(config-line)# exec-timeout 0 30
+Switch1(config-line)# exit
+```
+### check config & save config
 ```cisco
 Switch1# show startup-config
+Switch1# copy running-config startup-config
+Switch1# write memory
 ```
 | Cisco IOS Command  | Description   |
 | -----------------  | -------------:|
