@@ -1,5 +1,5 @@
 # configure Cisco switch
-## connect to switch by PuTTY
+## connect to switch by PuTTY through COM
 - get PuTTY [PuTTY](https://www.putty.org/)
 - connect by 
   - RS-232 cable or 
@@ -156,6 +156,14 @@ Switch1# show startup-config
 Switch1# copy running-config startup-config
 Switch1# write memory
 ```
+## connect to switch by PuTTY through Ethernet
+- get PuTTY [PuTTY](https://www.putty.org/)
+- connect by 
+  - RJ45 cable at the back of switch which is named CONSOLE 
+- set PuTTY
+  - Session > ssh | ip 192.168.30.2 | choose ssh
+  - diffie-hellman-group1-sha1 in kex list
+
 | Cisco IOS Command  | Description   |
 | -----------------  | -------------:|
 | show interface     | Displays current status and configuration details for all interfaces in the system |
