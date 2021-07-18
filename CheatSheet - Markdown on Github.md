@@ -17,7 +17,7 @@ _**Bold and nested italic**_
 
 ***All bold and italic***
 
-```
+```md
 # H1 The largest heading
 ## H2 The second largest heading
 ###### H6 The smallest heading
@@ -34,7 +34,6 @@ Alt-H2
 _**Bold and nested italic**_
 
 ***All bold and italic***
-
 ```
 
 ---
@@ -77,17 +76,17 @@ This site was built using [GitHub Pages](https://pages.github.com/).
 100. First list item
      - First nested list item
 
-```
+```md
 >quote
 
 Some basic Git commands are:
-```
+"```
 git status
 git add
 git commit
-```
+"````
 
-```html
+"```html
 <dl>
   <dt>Definition list</dt>
   <dd>Is something people use sometimes.</dd>
@@ -95,7 +94,7 @@ git commit
   <dt>Markdown in HTML</dt>
   <dd>Does *not* work **very** well. Use HTML <em>tags</em>.</dd>
 </dl>
-```
+"```
 
 This site was built using [GitHub Pages](https://pages.github.com/).
 
@@ -155,8 +154,7 @@ Markdown | Less | Pretty
 
 Three or more...
 
-```
-
+```md
 - [x] Finish my changes
 - [ ] Push my commits to GitHub
 - [ ] Open a pull request
@@ -212,7 +210,7 @@ alt="IMAGE ALT TEXT HERE" width="50" height="50" border="10" /></a>
 
 [![IMAGE ALT TEXT HERE](http://img.youtube.com/vi/YOUTUBE_VIDEO_ID_HERE/0.jpg)](http://www.youtube.com/watch?v=YOUTUBE_VIDEO_ID_HERE)
 
-```
+```md
 Hyphens
 
 ***
