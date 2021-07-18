@@ -45,4 +45,5 @@
 - Search
 - Useful commands
  
- 
+## Troubleshoots
+- How to import keys from a keyserver using gpg in debian? / Public key error / Fix apt-get update “the following signatures couldn’t be verified because the public key is not available”

@@ -1,3 +1,4 @@
+# How2 - set-up - Chrome Bot
 ## Preparation
 - install Chrome
 - install Addon from Webstore **User-Agent Switcher**

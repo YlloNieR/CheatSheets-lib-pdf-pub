@@ -1,5 +1,5 @@
+# How2 - set-up - LDAP Server
 # LDAP Installation and Config
-
 
 ### 1. Step - Login to root and change the Hostname
 

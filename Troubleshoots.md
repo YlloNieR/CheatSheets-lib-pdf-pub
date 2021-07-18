@@ -1,5 +1,6 @@
-# How to import keys from a keyserver using gpg in debian? / Public key error / Fix apt-get update “the following signatures couldn’t be verified because the public key is not available”
+# Troubleshoots
 
+## How to import keys from a keyserver using gpg in debian? / Public key error / Fix apt-get update “the following signatures couldn’t be verified because the public key is not available”
 problem:
 
 ```
@@ -26,3 +27,5 @@ OR try this server:
 on ubuntu
 
 &nbsp;&nbsp;&nbsp;&nbsp;```$ sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-keys 40946E2F437D05B5```
+
+---
