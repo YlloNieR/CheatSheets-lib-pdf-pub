@@ -139,7 +139,7 @@ return msg;
 
 ---
 ## store data
-### context 
+### context object
 *the node’s local context*
 ```js
 var count=context.get('count') || 0;
@@ -148,7 +148,7 @@ msg.payload=count;
 context.set('count',count);
 return msg;
 ```
-### object
+### context object
 ```js
 var local=context.get('data') || {};
 if (local.count===undefined)
@@ -160,7 +160,7 @@ msg.payload=local.count;
 context.set('data',local);
 return msg;
 ```
-### flow (stays alive after deploy)
+### flow object (stays alive after deploy)
 *the flow scope context*
 ```js
 var flowCount=flow.get('flowCount') || 0;
@@ -169,7 +169,7 @@ msg.payload=flowCount;
 flow.set('flowCount',flowCount);
 return msg;
 ```
-### global
+### global object
 *the global scope context*
 ```js
 work_GlobalTemp.b = 19;
