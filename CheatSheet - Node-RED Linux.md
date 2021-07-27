@@ -139,6 +139,7 @@ return msg;
 
 ---
 ## store data
+context - the node’s local context
 ### context 
 ```js
 var count=context.get('count') || 0;
@@ -159,6 +160,7 @@ msg.payload=local.count;
 context.set('data',local);
 return msg;
 ```
+flow - the flow scope context
 ### flow (stays alive after deploy)
 ```js
 var flowCount=flow.get('flowCount') || 0;
@@ -167,7 +169,7 @@ msg.payload=flowCount;
 flow.set('flowCount',flowCount);
 return msg;
 ```
-
+global - the global scope context
 
 ---
 ## clear form
