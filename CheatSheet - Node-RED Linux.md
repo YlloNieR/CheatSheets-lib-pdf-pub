@@ -140,6 +140,7 @@ return msg;
 ---
 ## store data
 ### context object
+#### sample 1
 *the node’s local context*
 ```js
 var count=context.get('count') || 0;
@@ -148,7 +149,7 @@ msg.payload=count;
 context.set('count',count);
 return msg;
 ```
-### context object
+#### sample 2
 ```js
 var local=context.get('data') || {};
 if (local.count===undefined)
