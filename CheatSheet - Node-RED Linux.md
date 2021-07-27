@@ -130,18 +130,16 @@ return msg;
 ```
 ---
 
-
 ## using material icons
 ```html
 <font i class="material-icons thumb_up" color = green></i></font>
 ```
 
-
 ---
 ## store data
 ### context object
-#### sample 1
 *the node’s local context*
+#### sample 1
 ```js
 var count=context.get('count') || 0;
 count += 1;
