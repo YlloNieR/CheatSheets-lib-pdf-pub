@@ -171,9 +171,10 @@ return msg;
 ### global object
 *the global scope context*
 ```js
-work_GlobalTemp.b = 19;
+var work_GlobalTemp.b = 19;
 global.set("Temp",GlobalTemp);
 msg.payload = global.get("Temp");
+return msg;
 ```
 
 ---
