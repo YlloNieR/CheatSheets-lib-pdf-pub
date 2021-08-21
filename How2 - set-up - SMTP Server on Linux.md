@@ -4,7 +4,7 @@ sSMTP | postfix | sendmail
 ## Choose your port
 
 Port      | Zweck                           |  TLS     | SSL
---------------------------------------------------------------
+----------|---------------------------------|----------|------
 25        | Simple Mail Transfer Protocol   | optional | No
 80        | Hypertext Transfer Protocol     | optional | No
 465       | authenticates SMTP via SSL      | No       | Ja
@@ -79,7 +79,7 @@ pi:USER@gmx.com:mail.gmx.net:465
 # Config file for sSMTP sendmail  
 # Make this empty to disable rewriting. 
 root=USER@gmx.de 
-user=USER@gmx.de
+pi=USER@gmx.de
 
 # The place where the mail goes. The actual machine name is required no  
 # MX records are consulted. Commonly mailhosts are named mail.domain.com 
@@ -129,6 +129,6 @@ ssmtp -v echo@tu-berlin.de
 
 #### Option 2
 ```
-echo "Mail-Inhalt" | mail -s "Betreff" meine-mail-adresse@gmail.com
+echo "Mail-Content" | mail -s "Subject" USER2@gmail.com
 ```
 
