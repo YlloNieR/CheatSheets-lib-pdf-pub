@@ -3,7 +3,7 @@ sSMTP | postfix | sendmail
 
 ## Choose your port
 
-**Port    | Zweck                           |  TLS     | SSL**
+**Port**  | **Zweck**                       |  **TLS** | **SSL**
 ----------|---------------------------------|----------|------
 25        | Simple Mail Transfer Protocol   | optional | No
 80        | Hypertext Transfer Protocol     | optional | No
