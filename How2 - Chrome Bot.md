@@ -1,4 +1,4 @@
-# How2 - set-up - Chrome Bot
+# How2 - Chrome Bot
 ## Preparation
 - install Chrome
 - install Addon from Webstore **User-Agent Switcher**
@@ -27,7 +27,7 @@
 ## create js for chrome dev console
 start Chrome + F12
 
-### set counter
+## set counter
 #### js1
 ```js
 localStorage.setItem('counter', 0);

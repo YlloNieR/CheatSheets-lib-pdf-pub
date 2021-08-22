@@ -1,4 +1,4 @@
-# How2 - set-up - syslog-ng on Linux
+# How2 - syslog-ng on Linux
 ## device 
 OS: Raspbian GNU/Linux 10 (buster)
 
@@ -69,12 +69,12 @@ tail -f /var/log/syslog
 ```
 
 ## how test syslog
-### send logfile from local0
+#### send logfile from local0
 ```bash
 logger -p local0.info "my test message"
 ```
 
-### which port does syslog listening to 
+#### which port does syslog listening to 
 ```bash
 netstat -peanut | grep syslog-ng
 ```
@@ -84,7 +84,7 @@ logger -p local0.info --server 127.0.0.1 --tcp --port 601 "my message"
 ```
 
 
-### test with python
+#### test with python
 ```bash
 chmod u+x pypilogger.py
 ```
@@ -115,7 +115,7 @@ nano /etc/logrotate.d/myapp
 }
 ```
 
-### check rotation
+#### check rotation
 ```bash
 nano /etc/crontab
 ```

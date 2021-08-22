@@ -1,5 +1,5 @@
-# How2 - set-up - Hyper-V
-- Prerequisites:
+# How2 - Hyper-V on Windows
+#### Prerequisites:
 - - x64 based PC
 - - OS Windows 10 **pro** or Windows 10 **enterprise**
 - - bios > virtualisation > enable

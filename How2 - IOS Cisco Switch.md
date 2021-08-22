@@ -1,4 +1,4 @@
-# How2 - set-up - IOS Cisco Switch
+# How2 - IOS Cisco Switch
 ## connect to switch by PuTTY through COM
 - get PuTTY [PuTTY](https://www.putty.org/)
 - connect by 
@@ -150,7 +150,7 @@ Switch1(config)# line vty 0 15
 Switch1(config-line)# exec-timeout 0 30
 Switch1(config-line)# exit
 ```
-### check config & save config
+#### check config & save config
 ```cisco
 Switch1# show startup-config
 Switch1# copy running-config startup-config

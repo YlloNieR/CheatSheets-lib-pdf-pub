@@ -1,4 +1,4 @@
-## How2 - set-up - Spot Boston Dynamics
+## How2 - Spot Boston Dynamics Update
 # on Windows
 ## install / upgrade pip and pillow
 ```

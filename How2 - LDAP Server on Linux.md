@@ -1,7 +1,7 @@
-# How2 - set-up - LDAP Server
-# LDAP Installation and Config
+# How2 - LDAP Server on Linux
+## LDAP Installation and Config
 
-### 1. Step - Login to root and change the Hostname
+#### 1. Step - Login to root and change the Hostname
 
 &nbsp;&nbsp;&nbsp;&nbsp;```urname@kali$ sudo -i```
 
@@ -21,7 +21,7 @@ output:
 
 &nbsp;&nbsp;&nbsp;&nbsp;```server.lingoworld.de```
 
-### 2. Step - install OpenLDAP
+#### 2. Step - install OpenLDAP
 
 &nbsp;&nbsp;&nbsp;&nbsp;```root@server$ apt-get install slapd -y```
 
@@ -33,7 +33,7 @@ if not start it
 
 &nbsp;&nbsp;&nbsp;&nbsp;```root@server$ /etc/init.d/slapd restart```
 
-### 3. Step - Reconfigure the slapd with the updated values
+#### 3. Step - Reconfigure the slapd with the updated values
 
 &nbsp;&nbsp;&nbsp;&nbsp;```root@server$ dpkg-reconfigure slapd```
 
@@ -51,7 +51,7 @@ if not start it
 
 &nbsp;&nbsp;&nbsp;&nbsp;Move old database?```Yes```
 
-### 4. Step - Check your Config
+#### 4. Step - Check your Config
 
 &nbsp;&nbsp;&nbsp;&nbsp;```root@server$ ldapsearch -x``` or ```root@server$dpkg-reconfigure slapd```
 
@@ -98,7 +98,7 @@ restart the service
 
 ---
 
-### 5. Step - insert data
+#### 5. Step - insert data
 
 &nbsp;&nbsp;&nbsp;&nbsp;```root@server$ ldapadd -Y EXTERNAL -H ldapi:/// -f /etc/ldap/schema/cosine.ldif```
 
@@ -269,19 +269,19 @@ dn: olcDatabase={2}hdb,cn=config
 ```
 
 
-### 6. Step - install phpldapadmin
+#### 6. Step - install phpldapadmin
 
 &nbsp;&nbsp;&nbsp;&nbsp;```root@server$ apt-get install phpldapadmin -y```
 
-### 7. Step - Set server address
+#### 7. Step - Set server address
 
-### Option 1 you take your current IPv4 address
+###### Option 1 you take your current IPv4 address
 
 &nbsp;&nbsp;&nbsp;&nbsp;```root@server$ ifconfig```
 
 look at inet addr for e.g.: 192.168.0.100
 
-### Option 2 you set a new one
+###### Option 2 you set a new one
 
 &nbsp;&nbsp;&nbsp;&nbsp;```root@server$ nano /etc/hosts```
 
@@ -291,7 +291,7 @@ add your ipv4 adress for e.g.:
 127.0.1.1 server.lingoworld.de
 ```
 
-### 8. Step - Configure config.php
+#### 8. Step - Configure config.php
 
 &nbsp;&nbsp;&nbsp;&nbsp;```root@server$ nano /etc/phpldapadmin/config.php``` or ```root@server$ vi /etc/phpldapadmin/config.php```
 
@@ -312,11 +312,11 @@ $server->setvalue('login','bind_id','cn=admin,dc=lingoworld,dc=de');    #326
 
 ```
 
-### 9. Step - restart service
+#### 9. Step - restart service
 
 &nbsp;&nbsp;&nbsp;&nbsp;```root@server$ systemctl restart apache2```
 
-### 10. Step - open website
+#### 10. Step - open website
 
 &nbsp;&nbsp;&nbsp;&nbsp;```http://192.168.0.100/phpldapadmin/```
 

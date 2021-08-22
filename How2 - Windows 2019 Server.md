@@ -1,7 +1,5 @@
-# How2 - set-up - Windows 2019 Server
-
-
-# configure Firewall / Router
+# How2 - Windows 2019 Server
+## configure Firewall / Router
 wf.msc
 ```powershell
 Get-NetAdapter -Name <Ethernet Name>

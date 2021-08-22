@@ -1,4 +1,4 @@
-## Choose your Application
+## How2 - SMTP Server on Linux
 sSMTP | postfix | sendmail
 
 ## Choose your port
@@ -120,14 +120,14 @@ pi:USER@gmx.com:mail.gmx.net:587
 #www-data:USER@gmx.com:mail.gmx.net:465
 ```
 
-### test your configuration
-#### Option 1
+#### test your configuration
+###### Option 1
 ```
 ssmtp -v echo@tu-berlin.de
 ```
 - press CTRL + d
 
-#### Option 2
+###### Option 2
 ```
 echo "Mail-Content" | mail -s "Subject" USER2@gmail.com
 ```
