@@ -175,9 +175,11 @@ List on SharePoint > Gear Symbol | Settings > Columns > choose column > look at 
 ```
 
 ***Condition - task done?***
-***TRUE***
-    ***Condition - routine task?***
-    ***TRUE***
+
+***TRUE001L{***
+***Condition - routine task?***
+
+***TRUE002L{***
 ```json
 {
     "inputs": {
@@ -203,9 +205,9 @@ List on SharePoint > Gear Symbol | Settings > Columns > choose column > look at 
     }
 }
 ```
+***}TRUE002L***
 
-    ***FALSE***
-    
+***FALSE002L{***
 ```json
 {
     "inputs": {
@@ -231,10 +233,13 @@ List on SharePoint > Gear Symbol | Settings > Columns > choose column > look at 
     }
 }
 ```
+***}FALSE002L***
+***}TRUE001L***
 
-***FALSE***
-    ***Condition - routine task?***
-    ***TRUE***
+***FALSE001R{***
+***Condition - routine task?***
+
+***TRUE002R{***
 ```json
 {
     "inputs": {
@@ -259,7 +264,9 @@ List on SharePoint > Gear Symbol | Settings > Columns > choose column > look at 
     }
 }
 ```
-    ***FALSE***
+***}TRUE002R***
+
+***FALSE002R{***
 ```json
 {
     "inputs": {
@@ -284,6 +291,8 @@ List on SharePoint > Gear Symbol | Settings > Columns > choose column > look at 
     }
 }
 ```
+***}FALSE002R***
+***}FALSE001R***
 
 ---
 
