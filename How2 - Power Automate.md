@@ -36,6 +36,7 @@
 ```
 
 ***Apply to each Control - output from previous setps = Attachments***
+
 ***send mail***
 ```json
 {
@@ -87,6 +88,7 @@
 ```
 
 ***Apply to each Control - output from previous setps = Attachments***
+
 ***create item in tasklist***
 ```json
 {
@@ -177,6 +179,7 @@ List on SharePoint > Gear Symbol | Settings > Columns > choose column > look at 
 ***Condition - task done?***
 
 ***TRUE001L{***
+
 ***Condition - routine task?***
 
 ***TRUE002L{***
@@ -234,9 +237,11 @@ List on SharePoint > Gear Symbol | Settings > Columns > choose column > look at 
 }
 ```
 ***}FALSE002L***
+
 ***}TRUE001L***
 
 ***FALSE001R{***
+
 ***Condition - routine task?***
 
 ***TRUE002R{***
@@ -292,6 +297,7 @@ List on SharePoint > Gear Symbol | Settings > Columns > choose column > look at 
 }
 ```
 ***}FALSE002R***
+
 ***}FALSE001R***
 
 ---
