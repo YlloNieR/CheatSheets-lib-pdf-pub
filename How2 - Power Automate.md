@@ -203,7 +203,9 @@ List on SharePoint > Gear Symbol | Settings > Columns > choose column > look at 
     }
 }
 ```
+
     ***FALSE***
+    
 ```json
 {
     "inputs": {
